@@ -14,10 +14,6 @@ function Header() {
           <div className="logo-tagline">Production Root Issue Sorting Mechanism</div>
         </div>
       </div>
-      <div className="user-controls">
-        <button className="primary">Export Data</button>
-        <button className="danger">Clear Data</button>
-      </div>
     </header>
   );
 }

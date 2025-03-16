@@ -460,4 +460,461 @@ footer {
         width: 100%;
         justify-content: space-between;
     }
+}
+
+/* Action buttons in root source analysis */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.export-btn,
+.clear-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    padding: 6px 12px;
+}
+
+.export-btn {
+    background-color: var(--bg-tertiary);
+}
+
+.clear-btn {
+    background-color: rgba(244, 67, 54, 0.2);
+    color: var(--danger);
+}
+
+.clear-btn:hover {
+    background-color: rgba(244, 67, 54, 0.3);
+}
+
+/* Modal styles */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: var(--bg-secondary);
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--bg-tertiary);
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 22px;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 10px;
+}
+
+.close-btn:hover {
+    color: var(--text-primary);
+    background: none;
+}
+
+.modal-content form {
+    padding: 20px;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+button.secondary {
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+button.secondary:hover {
+    background-color: #3a3a3a;
+}
+
+/* Success message */
+.success-message {
+    background-color: rgba(76, 175, 80, 0.1);
+    color: var(--success);
+    padding: 12px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.success-message::before {
+    content: '✓';
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Empty state */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+/* Contested row styling */
+.contested-row {
+    background-color: rgba(255, 152, 0, 0.1);
+}
+
+.contested-row:hover {
+    background-color: rgba(255, 152, 0, 0.15);
+}
+
+/* Helper text */
+.helper-text {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+}
+
+/* Loading spinner */
+.loader {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+/* AI decision styling */
+.ai-decided {
+    position: relative;
+}
+
+.ai-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: var(--accent);
+    color: white;
+    font-size: 9px;
+    padding: 2px 5px;
+    border-radius: 10px;
+    font-weight: 500;
+}
+
+.contested-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: var(--warning);
+    color: white;
+    font-size: 9px;
+    padding: 2px 5px;
+    border-radius: 10px;
+    font-weight: 500;
+}
+
+/* Contest info styling */
+.contest-info {
+    margin-top: 5px;
+    font-size: 11px;
+    color: var(--warning);
+}
+
+.contest-info small {
+    background-color: rgba(255, 152, 0, 0.1);
+    padding: 2px 5px;
+    border-radius: 3px;
+    display: inline-block;
+}
+
+/* Responsive table styles */
+@media (max-width: 768px) {
+    .department-section {
+        overflow-x: auto;
+    }
+    
+    table {
+        min-width: 600px;
+    }
+    
+    .card {
+        padding: 15px;
+    }
+    
+    .chart-container {
+        overflow-x: auto;
+        padding-bottom: 10px;
+    }
+    
+    .form-row {
+        flex-direction: column;
+    }
+    
+    .modal-content {
+        width: 95%;
+    }
+    
+    .action-buttons {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 576px) {
+    .main-content {
+        display: block;
+    }
+    
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .logo {
+        margin-bottom: 10px;
+        justify-content: center;
+    }
+    
+    .user-controls {
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    
+    .bar-label {
+        font-size: 10px;
+    }
+    
+    .department-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .department-name {
+        margin-bottom: 5px;
+    }
+}
+
+/* Improve table styles */
+table {
+    border-spacing: 0;
+}
+
+th, td {
+    padding: 10px 8px;
+    text-align: left;
+    border-bottom: 1px solid var(--bg-tertiary);
+}
+
+th {
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+/* Specific column widths for the department table */
+table th:nth-child(1) {  /* Date */
+    width: 80px;
+}
+
+table th:nth-child(2) {  /* Job # */
+    width: 80px;
+}
+
+table th:nth-child(3) {  /* Part # */
+    width: 80px;
+}
+
+table th:nth-child(4) {  /* Discovered In */
+    width: 120px;
+}
+
+table th:nth-child(5) {  /* Description */
+    min-width: 200px;
+}
+
+table th:nth-child(6) {  /* Delay */
+    width: 80px;
+}
+
+table th:nth-child(7) {  /* Contest button */
+    width: 80px;
+}
+
+tbody tr:hover {
+    background-color: rgba(123, 104, 238, 0.05);
+}
+
+/* Error styles */
+.error-message {
+    background-color: rgba(244, 67, 54, 0.1);
+    color: var(--danger);
+    padding: 12px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.error-message::before {
+    content: '!';
+    font-weight: bold;
+    font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background-color: var(--danger);
+    color: white;
+    border-radius: 50%;
+}
+
+.form-error {
+    color: var(--danger);
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+/* Input validation styles */
+input:invalid, select:invalid, textarea:invalid {
+    border-color: var(--danger);
+}
+
+input:focus:invalid, select:focus:invalid, textarea:focus:invalid {
+    border-color: var(--danger);
+    box-shadow: 0 0 0 1px rgba(244, 67, 54, 0.2);
+}
+
+/* Toast notification */
+.toast-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.toast {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border-left: 4px solid var(--accent);
+    padding: 12px 20px;
+    border-radius: 4px;
+    margin-top: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s, opacity 0.3s;
+    transform: translateX(0);
+    opacity: 1;
+    font-size: 14px;
+    max-width: 300px;
+}
+
+.toast.error {
+    border-left-color: var(--danger);
+}
+
+.toast.success {
+    border-left-color: var(--success);
+}
+
+.toast.warning {
+    border-left-color: var(--warning);
+}
+
+.toast.hide {
+    transform: translateX(120%);
+    opacity: 0;
+}
+
+/* Additional small screen adjustments */
+@media (max-width: 375px) {
+    .logo h1 {
+        font-size: 24px;
+    }
+    
+    .prism-icons {
+        width: 40px;
+        height: 35px;
+    }
+    
+    .form-group label {
+        font-size: 13px;
+    }
+    
+    input, select, textarea {
+        padding: 8px;
+        font-size: 13px;
+    }
+    
+    .modal-header h3 {
+        font-size: 16px;
+    }
+    
+    .chart-container {
+        height: 180px;
+    }
+    
+    .container {
+        padding: 10px;
+    }
+    
+    .toast-container {
+        left: 5px;
+        right: 5px;
+        bottom: 5px;
+    }
 } 

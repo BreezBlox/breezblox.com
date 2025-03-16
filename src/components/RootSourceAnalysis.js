@@ -9,7 +9,8 @@ function RootSourceAnalysis() {
     clearIssues, 
     exportIssues, 
     getIssuesByDepartment, 
-    getDelaysByDepartment 
+    getDelaysByDepartment,
+    isExporting
   } = useIssues();
   
   const [showContestModal, setShowContestModal] = useState(false);
@@ -20,24 +21,31 @@ function RootSourceAnalysis() {
   
   // Update data when issues change
   useEffect(() => {
-    const issuesByDept = getIssuesByDepartment();
-    setDepartmentIssues(issuesByDept);
-    
-    const delaysByDept = getDelaysByDepartment();
-    setDepartmentDelays(delaysByDept);
-    
-    // Format data for chart
-    const data = Object.entries(delaysByDept)
-      .filter(([dept, delay]) => delay > 0 && dept !== 'Unassigned')
-      .map(([dept, delay]) => ({
-        name: dept.split(' ')[0], // Use first word for short name
-        value: parseFloat(delay.toFixed(1)),
-        fullName: dept
-      }))
-      .sort((a, b) => b.value - a.value) // Sort by highest delay
-      .slice(0, 6); // Only show top 6 departments
+    try {
+      const issuesByDept = getIssuesByDepartment();
+      setDepartmentIssues(issuesByDept);
       
-    setChartData(data);
+      const delaysByDept = getDelaysByDepartment();
+      setDepartmentDelays(delaysByDept);
+      
+      // Format data for chart
+      const data = Object.entries(delaysByDept)
+        .filter(([dept, delay]) => delay > 0 && dept !== 'Unassigned')
+        .map(([dept, delay]) => ({
+          name: dept.split(' ')[0], // Use first word for short name
+          value: parseFloat(delay.toFixed(1)),
+          fullName: dept
+        }))
+        .sort((a, b) => b.value - a.value) // Sort by highest delay
+        .slice(0, 6); // Only show top 6 departments
+        
+      setChartData(data);
+    } catch (error) {
+      console.error('Error updating analysis data:', error);
+      if (window.showToast) {
+        window.showToast('Error updating analysis data', 'error');
+      }
+    }
   }, [issues, getIssuesByDepartment, getDelaysByDepartment]);
   
   const handleContest = (jobNumber) => {
@@ -46,7 +54,42 @@ function RootSourceAnalysis() {
   };
   
   const handleContestSubmit = (contestData) => {
-    contestIssue(contestData.jobNumber, contestData);
+    try {
+      contestIssue(contestData.jobNumber, contestData);
+      if (window.showToast) {
+        window.showToast('Department assignment contested successfully', 'success');
+      }
+    } catch (error) {
+      console.error('Error contesting issue:', error);
+      if (window.showToast) {
+        window.showToast('Error contesting issue', 'error');
+      }
+    }
+  };
+  
+  const handleExport = async () => {
+    try {
+      await exportIssues();
+      if (window.showToast) {
+        window.showToast('Data exported successfully', 'success');
+      }
+    } catch (error) {
+      console.error('Error exporting data:', error);
+      if (window.showToast) {
+        window.showToast('Error exporting data', 'error');
+      }
+    }
+  };
+  
+  const handleClearData = () => {
+    try {
+      clearIssues();
+    } catch (error) {
+      console.error('Error clearing data:', error);
+      if (window.showToast) {
+        window.showToast('Error clearing data', 'error');
+      }
+    }
   };
 
   // If there are no issues, show a placeholder
@@ -83,16 +126,29 @@ function RootSourceAnalysis() {
         </h2>
         
         <div className="action-buttons">
-          <button className="export-btn" onClick={exportIssues}>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-              <polyline points="7 10 12 15 17 10"></polyline>
-              <line x1="12" y1="15" x2="12" y2="3"></line>
-            </svg>
-            Export CSV
+          <button 
+            className="export-btn" 
+            onClick={handleExport}
+            disabled={isExporting}
+          >
+            {isExporting ? (
+              <>
+                <div className="loader"></div>
+                Exporting...
+              </>
+            ) : (
+              <>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Export CSV
+              </>
+            )}
           </button>
           
-          <button className="clear-btn" onClick={clearIssues}>
+          <button className="clear-btn" onClick={handleClearData}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="3 6 5 6 21 6"></polyline>
               <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
