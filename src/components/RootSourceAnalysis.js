@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ContestModal from './ContestModal';
 import { useIssues } from '../context/IssueContext';
 
@@ -6,6 +6,7 @@ function RootSourceAnalysis() {
   const { 
     issues, 
     contestIssue, 
+    deleteIssue,
     clearIssues, 
     exportIssues, 
     getIssuesByDepartment, 
@@ -18,6 +19,7 @@ function RootSourceAnalysis() {
   const [departmentIssues, setDepartmentIssues] = useState({});
   const [departmentDelays, setDepartmentDelays] = useState({});
   const [chartData, setChartData] = useState([]);
+  const chartRef = useRef(null);
   
   // Update data when issues change
   useEffect(() => {
@@ -28,25 +30,71 @@ function RootSourceAnalysis() {
       const delaysByDept = getDelaysByDepartment();
       setDepartmentDelays(delaysByDept);
       
-      // Format data for chart
+      // Count QC checkpoints per department
+      const qcCountByDept = {};
+      issues.forEach(issue => {
+        if (issue.isQcCheckpoint) {
+          const dept = issue.rootDepartment;
+          qcCountByDept[dept] = (qcCountByDept[dept] || 0) + 1;
+        }
+      });
+      
+      // Format data for chart - include departments with delay > 0 OR with QC checkpoints
       const data = Object.entries(delaysByDept)
-        .filter(([dept, delay]) => delay > 0 && dept !== 'Unassigned')
+        .filter(([dept, delay]) => 
+          (delay > 0 || (qcCountByDept[dept] && qcCountByDept[dept] > 0)) && 
+          dept !== 'Unassigned'
+        )
         .map(([dept, delay]) => ({
           name: dept.split(' ')[0], // Use first word for short name
           value: parseFloat(delay.toFixed(1)),
+          qcCount: qcCountByDept[dept] || 0,
           fullName: dept
         }))
         .sort((a, b) => b.value - a.value) // Sort by highest delay
         .slice(0, 6); // Only show top 6 departments
-        
+      
+      // Ensure data is properly formatted for rendering
+      console.log('Chart data:', data);
       setChartData(data);
     } catch (error) {
       console.error('Error updating analysis data:', error);
+      setChartData([]);
       if (window.showToast) {
         window.showToast('Error updating analysis data', 'error');
       }
     }
   }, [issues, getIssuesByDepartment, getDelaysByDepartment]);
+  
+  // Direct DOM manipulation to set bar heights
+  useEffect(() => {
+    if (chartRef.current && chartData.length > 0) {
+      const maxValue = Math.max(...chartData.map(d => d.value || 0));
+      
+      // Get all bar elements
+      const barElements = chartRef.current.querySelectorAll('.custom-chart-bar');
+      
+      // Force set the heights based on values
+      barElements.forEach((barElement, index) => {
+        if (index < chartData.length) {
+          const value = chartData[index].value || 0;
+          // Calculate height percentage (min 5%)
+          const heightPercent = maxValue > 0 
+            ? Math.max(Math.floor((value / maxValue) * 100), 5) 
+            : 5;
+          
+          // Force override the height with !important
+          barElement.style.setProperty('height', `${heightPercent}%`, 'important');
+          
+          // Make sure the bar label shows the correct value
+          const valueLabel = barElement.querySelector('.value-label');
+          if (valueLabel) {
+            valueLabel.textContent = value;
+          }
+        }
+      });
+    }
+  }, [chartData]);
   
   const handleContest = (jobNumber) => {
     setSelectedJob(jobNumber);
@@ -92,6 +140,91 @@ function RootSourceAnalysis() {
     }
   };
 
+  const handleDelete = (jobNumber) => {
+    deleteIssue(jobNumber);
+  };
+  
+  // Chart visualization with fixed heights
+  const renderChart = () => {
+    if (!chartData || chartData.length === 0) return null;
+    
+    // Define colors for each bar
+    const colors = ['#4285F4', '#EA4335', '#FBBC05', '#34A853', '#8E24AA', '#16A2D7'];
+    
+    // Calculate max value for scaling
+    const maxValue = Math.max(...chartData.map(d => d.value || 0));
+    
+    // Use table for completely different layout
+    return (
+      <div 
+        style={{ 
+          margin: '20px 0 30px 0', 
+          border: '1px solid #333',
+          borderRadius: '8px',
+          padding: '15px',
+          backgroundColor: '#1e1e2d'
+        }}
+      >
+        <div style={{ marginBottom: '10px', fontWeight: 'bold', color: '#fff' }}>
+          Department Delays
+        </div>
+        
+        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+          <tbody>
+            <tr>
+              {chartData.map((dept, index) => (
+                <td 
+                  key={index} 
+                  style={{ 
+                    padding: '0 5px', 
+                    textAlign: 'center', 
+                    verticalAlign: 'bottom',
+                    width: `${100 / chartData.length}%`
+                  }}
+                >
+                  <div style={{ 
+                    fontWeight: 'bold', 
+                    marginBottom: '5px',
+                    color: colors[index % colors.length]
+                  }}>
+                    {dept.value}
+                  </div>
+                  
+                  <div 
+                    className="custom-chart-bar"
+                    style={{ 
+                      height: maxValue > 0 ? `${Math.max((dept.value / maxValue) * 150, 10)}px` : '10px',
+                      backgroundColor: colors[index % colors.length],
+                      margin: '0 auto',
+                      width: '80%',
+                      borderRadius: '4px 4px 0 0'
+                    }}
+                  />
+                  
+                  <div style={{ marginTop: '8px', fontSize: '12px', color: '#ccc' }}>
+                    {dept.name}
+                    {dept.qcCount > 0 && (
+                      <span style={{ 
+                        backgroundColor: '#ff9800',
+                        color: 'white',
+                        padding: '1px 4px',
+                        borderRadius: '3px',
+                        fontSize: '10px',
+                        marginLeft: '5px'
+                      }}>
+                        QC: {dept.qcCount}
+                      </span>
+                    )}
+                  </div>
+                </td>
+              ))}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    );
+  };
+  
   // If there are no issues, show a placeholder
   if (issues.length === 0) {
     return (
@@ -158,22 +291,7 @@ function RootSourceAnalysis() {
         </div>
         
         {/* Chart visualization */}
-        {chartData.length > 0 && (
-          <div className="chart-container">
-            <div className="x-axis"></div>
-            
-            {chartData.map((dept, index) => (
-              <div 
-                key={index}
-                className="chart-bar" 
-                style={{ height: `${(dept.value / Math.max(...chartData.map(d => d.value))) * 80}%` }}
-              >
-                <div className="bar-value">{dept.value}</div>
-                <div className="bar-label">{dept.name}</div>
-              </div>
-            ))}
-          </div>
-        )}
+        {renderChart()}
         
         {/* Department sections */}
         {Object.entries(departmentIssues)
@@ -202,7 +320,7 @@ function RootSourceAnalysis() {
                     <th>Discovered In</th>
                     <th>Description</th>
                     <th>Delay</th>
-                    <th></th>
+                    <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -214,6 +332,15 @@ function RootSourceAnalysis() {
                       <td>{issue.department}</td>
                       <td>
                         {issue.description}
+                        {issue.isQcCheckpoint && (
+                          <div className="qc-tag">
+                            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                            QC
+                          </div>
+                        )}
                         {issue.contested && (
                           <div className="contest-info">
                             <small>Contested from: {issue.previousDepartment}</small>
@@ -221,15 +348,25 @@ function RootSourceAnalysis() {
                         )}
                       </td>
                       <td>{issue.delayTime || '0'} hrs</td>
-                      <td>
+                      <td className="actions-cell">
                         <button 
                           className="contest-btn"
+                          title="Contest this issue"
                           onClick={() => handleContest(issue.jobNumber)}
                         >
                           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
                           </svg>
-                          Contest
+                        </button>
+                        <button 
+                          className="delete-btn"
+                          title="Delete this issue"
+                          onClick={() => handleDelete(issue.jobNumber)}
+                        >
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                            <polyline points="3 6 5 6 21 6"></polyline>
+                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                          </svg>
                         </button>
                       </td>
                     </tr>
