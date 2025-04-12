@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; script-src 'self' 'unsafe-inline';">
     <title>STUDIO | BREEZBLOX.com</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap');
@@ -978,253 +977,6 @@
                 font-size: 0.9rem;
             }
         }
-        
-        /* Under Construction Overlay and Floating Element */
-        .under-construction-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(10, 14, 23, 0.4);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            z-index: 9500;
-            pointer-events: none;
-        }
-        
-        .construction-container {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 300px;
-            height: 300px;
-            z-index: 9600;
-            animation: float 6s ease-in-out infinite;
-            pointer-events: none;
-        }
-        
-        @keyframes float {
-            0% { transform: translate(-50%, -50%); }
-            50% { transform: translate(-50%, -60%); }
-            100% { transform: translate(-50%, -50%); }
-        }
-        
-        .construction-box {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            padding: 20px;
-            background-color: rgba(10, 14, 23, 0.9);
-            border: 3px solid var(--neon-yellow);
-            box-shadow: 0 0 30px rgba(255, 216, 0, 0.5), inset 0 0 20px rgba(255, 216, 0, 0.2);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-        
-        .hazard-stripes {
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 300%;
-            height: 100%;
-            background: repeating-linear-gradient(
-                45deg,
-                var(--accent-color),
-                var(--accent-color) 10px,
-                var(--dark-blue) 10px,
-                var(--dark-blue) 20px
-            );
-            opacity: 0.2;
-            animation: hazard-move 10s linear infinite;
-        }
-        
-        @keyframes hazard-move {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(33.33%); }
-        }
-        
-        .construction-text {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: var(--neon-yellow);
-            text-shadow: 0 0 15px var(--neon-yellow);
-            text-transform: uppercase;
-            margin-bottom: 15px;
-            position: relative;
-            letter-spacing: 2px;
-            animation: flicker-text 4s infinite;
-            text-align: center;
-            line-height: 1;
-        }
-        
-        @keyframes flicker-text {
-            0% { opacity: 1; }
-            3% { opacity: 1; }
-            4% { opacity: 0.8; }
-            5% { opacity: 1; }
-            9% { opacity: 1; }
-            10% { opacity: 0.6; }
-            11% { opacity: 1; }
-            80% { opacity: 1; }
-            83% { opacity: 0.7; }
-            84% { opacity: 1; }
-            99% { opacity: 1; }
-            100% { opacity: 0.8; }
-        }
-        
-        .under-text {
-            color: var(--neon-yellow);
-        }
-        
-        .construction-subtext {
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 1rem;
-            color: var(--terminal-green);
-            letter-spacing: 1px;
-            text-align: center;
-            line-height: 1.5;
-            margin-bottom: 20px;
-        }
-        
-        .loading-bar-container {
-            width: 80%;
-            height: 20px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border: 1px solid var(--neon-yellow);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .loading-bar {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 30%;
-            background-color: var(--neon-yellow);
-            box-shadow: 0 0 10px var(--neon-yellow);
-            animation: loading 4s ease-in-out infinite alternate;
-        }
-        
-        @keyframes loading {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(300%); }
-        }
-        
-        .glitch-effect {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                transparent 0%, 
-                rgba(255, 255, 255, 0.2) 50%, 
-                transparent 100%);
-            opacity: 0;
-            transform: skewX(-20deg);
-            animation: glitch-scan 4s infinite;
-            pointer-events: none;
-        }
-        
-        @keyframes glitch-scan {
-            0% { opacity: 0; left: -50%; }
-            5% { opacity: 0.5; }
-            6% { opacity: 0; }
-            100% { opacity: 0; left: 150%; }
-        }
-        
-        .technical-corners::before, 
-        .technical-corners::after,
-        .technical-corners span::before,
-        .technical-corners span::after {
-            content: "";
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            border-color: var(--neon-yellow);
-            border-style: solid;
-            border-width: 0;
-            z-index: 2;
-        }
-        
-        .technical-corners::before {
-            top: 0;
-            left: 0;
-            border-top-width: 3px;
-            border-left-width: 3px;
-        }
-        
-        .technical-corners::after {
-            top: 0;
-            right: 0;
-            border-top-width: 3px;
-            border-right-width: 3px;
-        }
-        
-        .technical-corners span::before {
-            bottom: 0;
-            left: 0;
-            border-bottom-width: 3px;
-            border-left-width: 3px;
-        }
-        
-        .technical-corners span::after {
-            bottom: 0;
-            right: 0;
-            border-bottom-width: 3px;
-            border-right-width: 3px;
-        }
-        
-        .tech-coordinates {
-            position: absolute;
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.6rem;
-            color: var(--terminal-green);
-            opacity: 0.7;
-        }
-        
-        .coord-1 { top: 10px; left: 10px; }
-        .coord-2 { top: 10px; right: 10px; }
-        .coord-3 { bottom: 10px; left: 10px; }
-        .coord-4 { bottom: 10px; right: 10px; }
-        
-        /* Responsive adjustments for construction sign */
-        @media (max-width: 768px) {
-            .construction-container {
-                width: 250px;
-                height: 250px;
-            }
-            
-            .construction-text {
-                font-size: 2rem;
-            }
-            
-            .construction-subtext {
-                font-size: 0.9rem;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .construction-container {
-                width: 220px;
-                height: 220px;
-            }
-            
-            .construction-text {
-                font-size: 1.8rem;
-            }
-            
-            .construction-subtext {
-                font-size: 0.8rem;
-            }
-        }
     </style>
 </head>
 <body>
@@ -1242,9 +994,10 @@
     
     <nav>
         <ul>
-            <li><a href="../index.html">HOME</a></li>
+            <li><a href="index.html">HOME</a></li>
             <li><a href="studio.html" class="active">STUDIO</a></li>
-            <li><a href="about.html">ABOUT ME</a></li>
+            <li><a href="#">ABOUT ME</a></li>
+            <li><a href="#">BLOG</a></li>
         </ul>
     </nav>
     
@@ -1440,7 +1193,7 @@
     
     <footer>
         <div class="logo">BREEZBLOX.com</div>
-        <div class="copyright"> 2025 | SYSTEM ERROR IMMINENT</div>
+        <div class="copyright">© 2025 | SYSTEM ERROR IMMINENT</div>
     </footer>
     
     <div class="tech-element tech-1">STUDIO:ACTIVE:C7YCr_26</div>
@@ -1451,33 +1204,5 @@
     <div class="stats-counter">
         SEQUENCE: <span class="counter"></span>
     </div>
-    
-    <!-- Under Construction Elements -->
-    <div class="under-construction-overlay"></div>
-    
-    <div class="construction-container">
-        <div class="construction-box">
-            <div class="hazard-stripes"></div>
-            <div class="glitch-effect"></div>
-            <div class="technical-corners"><span></span></div>
-            
-            <div class="tech-coordinates coord-1">x:31.45</div>
-            <div class="tech-coordinates coord-2">y:87.92</div>
-            <div class="tech-coordinates coord-3">PRIORITY:HIGH</div>
-            <div class="tech-coordinates coord-4">MODE:EXPAND</div>
-            
-            <div class="construction-text">
-                <span class="under-text">UNDER</span><br>CONSTRUCT
-            </div>
-            <div class="construction-subtext">
-                BUILDING FUTURE MODULES<br>
-                EXPANDING DATA STREAMS
-            </div>
-            <div class="loading-bar-container">
-                <div class="loading-bar"></div>
-            </div>
-        </div>
-    </div>
 </body>
 </html>
-
