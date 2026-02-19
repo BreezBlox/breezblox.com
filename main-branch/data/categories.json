@@ -1,0 +1,59 @@
+{
+  "categories": [
+    {
+      "id": "ai-tools",
+      "name": "AI Development & Tools",
+      "icon": "🤖",
+      "description": "Tools, platforms, and frameworks powering modern AI development",
+      "subcategories": [
+        { "id": "ai-model-providers", "name": "AI Model Providers" },
+        { "id": "ai-developer-tools", "name": "AI Developer Tools" },
+        { "id": "ai-infrastructure-software", "name": "AI Infrastructure Software" },
+        { "id": "ai-application-platforms", "name": "AI Application Platforms" },
+        { "id": "ai-research-education", "name": "AI Research & Education" }
+      ]
+    },
+    {
+      "id": "dc-infrastructure",
+      "name": "Data Center & Physical Infrastructure",
+      "icon": "🏗️",
+      "description": "Hardware, systems, and services for building and operating data centers",
+      "subcategories": [
+        { "id": "containment-solutions", "name": "Containment Solutions" },
+        { "id": "cooling-thermal", "name": "Cooling & Thermal Management" },
+        { "id": "power-electrical", "name": "Power & Electrical" },
+        { "id": "cabling-connectivity", "name": "Structured Cabling & Connectivity" },
+        { "id": "construction-facility", "name": "Construction & Facility Services" },
+        { "id": "monitoring-dcim", "name": "Monitoring & DCIM" }
+      ]
+    },
+    {
+      "id": "cloud-compute",
+      "name": "Cloud & Compute Services",
+      "icon": "☁️",
+      "description": "GPU cloud, colocation, and hyperscale compute platforms",
+      "subcategories": [
+        { "id": "gpu-cloud", "name": "GPU Cloud Providers" },
+        { "id": "colocation", "name": "Colocation Providers" },
+        { "id": "hyperscale-wholesale", "name": "Hyperscale & Wholesale" }
+      ]
+    },
+    {
+      "id": "policy-industry",
+      "name": "Policy, Regulation & Industry",
+      "icon": "📋",
+      "description": "Governance, sustainability, and industry associations shaping the future",
+      "subcategories": [
+        { "id": "ai-policy-governance", "name": "AI Policy & Governance" },
+        { "id": "energy-sustainability", "name": "Energy & Sustainability" },
+        { "id": "associations-events", "name": "Industry Associations & Events" }
+      ]
+    }
+  ],
+  "tags": {
+    "companySize": ["startup", "mid-market", "enterprise"],
+    "geography": ["us-west", "us-east", "us-central", "europe", "asia", "global"],
+    "pricingModel": ["free", "freemium", "paid", "enterprise"],
+    "contentType": ["tool", "service", "resource", "news-source"]
+  }
+}

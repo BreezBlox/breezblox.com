@@ -1,0 +1,148 @@
+{
+    "sources": [
+        {
+            "name": "@testingcatalog",
+            "url": "https://twitter.com/testingcatalog",
+            "type": "social",
+            "frequency": "daily",
+            "priority": "high",
+            "category": "ai"
+        },
+        {
+            "name": "AI Daily Brief Podcast",
+            "url": "https://aidailybrief.com",
+            "type": "podcast",
+            "frequency": "daily",
+            "priority": "high",
+            "category": "ai"
+        },
+        {
+            "name": "Everyday AI Podcast",
+            "url": "https://youreverydayai.com",
+            "type": "podcast",
+            "frequency": "daily",
+            "priority": "high",
+            "category": "ai"
+        },
+        {
+            "name": "The Artificial Intelligence Show",
+            "url": "https://www.marketingaiinstitute.com/podcast",
+            "type": "podcast",
+            "frequency": "weekly",
+            "priority": "high",
+            "category": "ai"
+        },
+        {
+            "name": "The Verge — AI",
+            "url": "https://www.theverge.com/ai-artificial-intelligence",
+            "type": "news",
+            "frequency": "daily",
+            "priority": "medium",
+            "category": "ai"
+        },
+        {
+            "name": "Ars Technica — AI",
+            "url": "https://arstechnica.com/ai/",
+            "type": "news",
+            "frequency": "daily",
+            "priority": "medium",
+            "category": "ai"
+        },
+        {
+            "name": "Import AI Newsletter",
+            "url": "https://importai.substack.com",
+            "type": "newsletter",
+            "frequency": "weekly",
+            "priority": "medium",
+            "category": "ai"
+        },
+        {
+            "name": "TLDR AI Newsletter",
+            "url": "https://tldr.tech/ai",
+            "type": "newsletter",
+            "frequency": "daily",
+            "priority": "medium",
+            "category": "ai"
+        },
+        {
+            "name": "Ben's Bites",
+            "url": "https://bensbites.beehiiv.com",
+            "type": "newsletter",
+            "frequency": "daily",
+            "priority": "medium",
+            "category": "ai"
+        },
+        {
+            "name": "Data Center Dynamics",
+            "url": "https://www.datacenterdynamics.com",
+            "type": "publication",
+            "frequency": "daily",
+            "priority": "high",
+            "category": "dc"
+        },
+        {
+            "name": "Data Center Knowledge",
+            "url": "https://www.datacenterknowledge.com",
+            "type": "publication",
+            "frequency": "daily",
+            "priority": "high",
+            "category": "dc"
+        },
+        {
+            "name": "Uptime Institute",
+            "url": "https://uptimeinstitute.com",
+            "type": "research",
+            "frequency": "weekly",
+            "priority": "high",
+            "category": "dc"
+        },
+        {
+            "name": "STR (Structure Research)",
+            "url": "https://www.structureresearch.net",
+            "type": "research",
+            "frequency": "monthly",
+            "priority": "medium",
+            "category": "dc"
+        },
+        {
+            "name": "AFCOM / Data Center World",
+            "url": "https://www.afcom.com",
+            "type": "association",
+            "frequency": "periodic",
+            "priority": "medium",
+            "category": "dc"
+        },
+        {
+            "name": "Mission Critical Magazine",
+            "url": "https://www.missioncriticalmagazine.com",
+            "type": "publication",
+            "frequency": "monthly",
+            "priority": "medium",
+            "category": "dc"
+        },
+        {
+            "name": "AI Policy Newsletter (CSET)",
+            "url": "https://cset.georgetown.edu",
+            "type": "newsletter",
+            "frequency": "weekly",
+            "priority": "high",
+            "category": "policy"
+        },
+        {
+            "name": "White House AI/Tech Briefings",
+            "url": "https://www.whitehouse.gov/ostp/ai/",
+            "type": "government",
+            "frequency": "as-published",
+            "priority": "medium",
+            "category": "policy"
+        },
+        {
+            "name": "Utility Dive",
+            "url": "https://www.utilitydive.com",
+            "type": "news",
+            "frequency": "daily",
+            "priority": "medium",
+            "category": "policy"
+        }
+    ]
+}

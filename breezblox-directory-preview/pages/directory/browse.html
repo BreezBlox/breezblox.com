@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BREEZBLOX // Browse Directory</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; script-src 'self' 'unsafe-inline';">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/directory.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap">
+</head>
+<body>
+    <div class="noise"></div>
+    <div class="glitch-line"></div>
+    <div class="glitch-line"></div>
+    <div class="glitch-line"></div>
+    <div class="distortion"></div>
+    <div class="technical-overlay"></div>
+
+    <header>
+        <div class="logo">BREEZBLOX.com</div>
+        <div class="tag-line">DESIGN . CREATE . IMPROVE</div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="../../index.html">HOME</a></li>
+            <li><a href="../studio.html">STUDIO</a></li>
+            <li><a href="index.html" class="active">DIRECTORY</a></li>
+            <li><a href="../about.html">ABOUT ME</a></li>
+        </ul>
+    </nav>
+
+    <div class="dir-container">
+        <!-- Search -->
+        <section style="padding: 40px 0 0;">
+            <div class="dir-search" style="max-width: 100%;">
+                <input type="text" id="searchInput" placeholder="Search by name, category, or tag...">
+                <button onclick="applyFilters()">SEARCH</button>
+            </div>
+        </section>
+
+        <!-- Filters -->
+        <div class="dir-filters" id="filterBar">
+            <button class="dir-filter-btn active" data-filter="all">ALL</button>
+        </div>
+
+        <!-- Results count -->
+        <div class="dir-results-count" id="resultsCount"></div>
+
+        <!-- Listings Grid -->
+        <div class="dir-listings" id="listingsGrid"></div>
+
+        <!-- Empty state -->
+        <div class="dir-empty" id="emptyState" style="display: none;">
+            <div class="dir-empty-icon">&#x1F50D;</div>
+            <div class="dir-empty-text">NO LISTINGS MATCH YOUR SEARCH</div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="logo">BREEZBLOX.com</div>
+        <div class="copyright">&copy; 2026 | AI + DATA CENTER DIRECTORY</div>
+    </footer>
+
+    <div class="tech-element tech-1">DIR:ACTIVE:BROWSE</div>
+    <div class="tech-element tech-2">FILTER:ENGAGED</div>
+    <div class="tech-element tech-3">RESULTS//RENDERED</div>
+    <div class="tech-element tech-4">SEARCH:ONLINE</div>
+
+    <script>
+    let listings = [];
+    let categories = [];
+    let activeFilter = 'all';
+
+    const LOGO_GRADIENTS = [
+        'linear-gradient(135deg, #7C3AED, #9D4EDD)',
+        'linear-gradient(135deg, #059669, #0DF2C9)',
+        'linear-gradient(135deg, #D97706, #FFD800)',
+        'linear-gradient(135deg, #DC2626, #FF2E63)',
+        'linear-gradient(135deg, #1D4ED8, #3B82F6)',
+        'linear-gradient(135deg, #0891B2, #22D3EE)',
+        'linear-gradient(135deg, #7C3AED, #A78BFA)',
+        'linear-gradient(135deg, #059669, #34D399)',
+    ];
+
+    function getGradient(name) {
+        let hash = 0;
+        for (let i = 0; i < name.length; i++) hash = name.charCodeAt(i) + ((hash << 5) - hash);
+        return LOGO_GRADIENTS[Math.abs(hash) % LOGO_GRADIENTS.length];
+    }
+
+    function getInitials(name) {
+        return name.split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase();
+    }
+
+    function getTagClass(category) {
+        const cat = categories.find(c => c.id === category);
+        if (!cat) return 'dir-tag-pill--default';
+        const map = { ai: 'dir-tag-pill--ai', datacenter: 'dir-tag-pill--dc', cloud: 'dir-tag-pill--cloud', policy: 'dir-tag-pill--policy' };
+        return map[cat.parent] || 'dir-tag-pill--default';
+    }
+
+    function getCategoryName(id) {
+        const cat = categories.find(c => c.id === id);
+        return cat ? cat.name : id;
+    }
+
+    function renderFilters() {
+        const bar = document.getElementById('filterBar');
+        const buttons = [
+            { id: 'all', label: 'ALL', parent: null },
+            ...categories.map(c => ({ id: c.id, label: c.name, parent: c.parent }))
+        ];
+        bar.innerHTML = buttons.map(b => `
+            <button class="dir-filter-btn ${b.id === activeFilter ? 'active' : ''}"
+                    data-filter="${b.id}"
+                    ${b.parent ? `data-parent="${b.parent}"` : ''}
+                    onclick="setFilter('${b.id}')">
+                ${b.label}
+            </button>
+        `).join('');
+    }
+
+    function setFilter(id) {
+        activeFilter = id;
+        renderFilters();
+        applyFilters();
+    }
+
+    function applyFilters() {
+        const query = document.getElementById('searchInput').value.trim().toLowerCase();
+        let filtered = listings.filter(l => l.status === 'published');
+
+        if (activeFilter !== 'all') {
+            filtered = filtered.filter(l => l.category === activeFilter);
+        }
+
+        if (query) {
+            filtered = filtered.filter(l =>
+                l.name.toLowerCase().includes(query) ||
+                l.description.toLowerCase().includes(query) ||
+                l.category.toLowerCase().includes(query) ||
+                l.tags.some(t => t.toLowerCase().includes(query)) ||
+                getCategoryName(l.category).toLowerCase().includes(query)
+            );
+        }
+
+        renderListings(filtered);
+    }
+
+    function renderListings(items) {
+        const grid = document.getElementById('listingsGrid');
+        const empty = document.getElementById('emptyState');
+        const count = document.getElementById('resultsCount');
+
+        count.textContent = `${items.length} LISTING${items.length !== 1 ? 'S' : ''} FOUND`;
+
+        if (items.length === 0) {
+            grid.style.display = 'none';
+            empty.style.display = 'block';
+            return;
+        }
+
+        grid.style.display = 'grid';
+        empty.style.display = 'none';
+
+        grid.innerHTML = items.map(l => `
+            <a href="listing.html?id=${l.id}" class="dir-listing">
+                <div class="dir-listing-logo" style="background: ${getGradient(l.name)}">${getInitials(l.name)}</div>
+                <div class="dir-listing-info">
+                    <div class="dir-listing-name">${l.name}${l.featured ? ' ★' : ''}</div>
+                    <div class="dir-listing-desc">${l.description}</div>
+                    <div class="dir-listing-tags">
+                        <span class="dir-tag-pill ${getTagClass(l.category)}">${getCategoryName(l.category)}</span>
+                        ${l.tags.slice(0, 2).map(t => `<span class="dir-tag-pill dir-tag-pill--default">${t}</span>`).join('')}
+                    </div>
+                </div>
+            </a>
+        `).join('');
+    }
+
+    document.getElementById('searchInput').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') applyFilters();
+    });
+
+    document.getElementById('searchInput').addEventListener('input', function() {
+        applyFilters();
+    });
+
+    async function init() {
+        try {
+            const [listingsRes, categoriesRes] = await Promise.all([
+                fetch('../../data/listings.json'),
+                fetch('../../data/categories.json')
+            ]);
+            listings = await listingsRes.json();
+            const catData = await categoriesRes.json();
+            categories = catData.categories;
+
+            // Check URL params
+            const params = new URLSearchParams(window.location.search);
+            const cat = params.get('category');
+            const q = params.get('q');
+
+            if (cat) activeFilter = cat;
+            if (q) document.getElementById('searchInput').value = q;
+
+            renderFilters();
+            applyFilters();
+        } catch (err) {
+            console.error('Failed to load directory data:', err);
+        }
+    }
+
+    init();
+    </script>
+</body>
+</html>

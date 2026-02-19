@@ -1,0 +1,17 @@
+[build]
+  publish = "."
+  
+[build.environment]
+  NODE_VERSION = "16"
+
+# Serve directory pages directly
+[[headers]]
+  for = "/directory/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+
+# Fallback redirect (only for non-existent paths)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

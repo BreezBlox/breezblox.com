@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SUBMIT LISTING — BREEZBLOX Directory</title>
+    <meta name="description"
+        content="Submit your company, tool, or resource for inclusion in the BREEZBLOX AI + Infrastructure Directory.">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; script-src 'self' 'unsafe-inline';">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/directory.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap">
+</head>
+
+<body data-page="submit">
+    <div class="noise"></div>
+    <div class="glitch-line"></div>
+    <div class="glitch-line"></div>
+    <div class="glitch-line"></div>
+    <div class="distortion"></div>
+    <div class="technical-overlay"></div>
+
+    <header>
+        <div class="logo">BREEZBLOX.com</div>
+        <div class="tag-line">DESIGN . CREATE . IMPROVE</div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="../index.html">HOME</a></li>
+            <li><a href="../pages/studio.html">STUDIO</a></li>
+            <li><a href="index.html" class="active">DIRECTORY</a></li>
+            <li><a href="../pages/about.html">ABOUT ME</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section class="directory-hero" style="padding-bottom: 20px;">
+            <div class="terminal-prompt">opening submission port...</div>
+            <h1>SUBMIT <span style="color: var(--terminal-green);">LISTING</span></h1>
+            <div class="hero-divider"></div>
+            <p class="hero-subtitle">Know a company, tool, or resource that belongs here? Fill out the form and we'll
+                review it.</p>
+        </section>
+
+        <form class="submit-form" id="submit-form">
+            <div class="form-group">
+                <label for="submit-name">Company / Tool Name</label>
+                <input type="text" id="submit-name" name="name" placeholder="e.g. Acme AI Labs" required>
+            </div>
+
+            <div class="form-group">
+                <label for="submit-url">Website URL</label>
+                <input type="url" id="submit-url" name="website_url" placeholder="https://example.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="submit-description">Short Description</label>
+                <input type="text" id="submit-description" name="description_short"
+                    placeholder="One-line description (150 chars max)" maxlength="150" required>
+                <span class="form-note">max 150 characters</span>
+            </div>
+
+            <div class="form-group">
+                <label for="submit-long-desc">Full Description</label>
+                <textarea id="submit-long-desc" name="description_long"
+                    placeholder="Tell us more about this company or tool..." required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="submit-category">Category</label>
+                <select id="submit-category" name="category" required>
+                    <option value="">Select category...</option>
+                    <!-- Populated by directory.js -->
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="submit-subcategory">Subcategory</label>
+                <select id="submit-subcategory" name="subcategory" required>
+                    <option value="">Select subcategory...</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="submit-contact">Your Email (Optional)</label>
+                <input type="email" id="submit-contact" name="contact_email" placeholder="you@email.com">
+                <span class="form-note">we'll notify you when your listing is published</span>
+            </div>
+
+            <button type="submit" class="submit-btn">SUBMIT FOR REVIEW →</button>
+        </form>
+    </div>
+
+    <footer>
+        <div class="logo">BREEZBLOX.com</div>
+        <div class="copyright">2025 | a year from now you'll wish you had started today</div>
+    </footer>
+
+    <div class="tech-element tech-1">SYS:SUBMIT:ACTIVE</div>
+    <div class="tech-element tech-2">PORT:OPEN</div>
+    <div class="tech-element tech-3">INTAKE//READY</div>
+    <div class="tech-element tech-4">REVIEW:PENDING</div>
+
+    <div class="stats-counter">
+        SEQUENCE: <span class="counter"></span>
+    </div>
+
+    <script src="../scripts/directory.js"></script>
+</body>
+
+</html>

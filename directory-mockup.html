@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BreezBlox Directory — Mockup</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --neon-yellow: #FFD800;
+    --dark-blue: #0A0E17;
+    --glitch-blue: #1A2639;
+    --text-color: #FFFFFF;
+    --accent-color: #FF2E63;
+    --terminal-green: #0Df2c9;
+    --purple-accent: #9D4EDD;
+    --card-bg: #111827;
+    --border-color: #1E293B;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--dark-blue);
+    color: var(--text-color);
+    font-family: 'Share Tech Mono', monospace;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 16px 40px;
+    background: rgba(10,14,23,0.95);
+    border-bottom: 1px solid var(--border-color);
+    backdrop-filter: blur(10px);
+  }
+  .logo {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900; font-size: 20px;
+    color: var(--neon-yellow);
+    letter-spacing: 4px;
+  }
+  .logo span { color: var(--terminal-green); }
+  nav ul { display: flex; list-style: none; gap: 32px; }
+  nav a {
+    color: var(--text-color); text-decoration: none;
+    font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  nav a:hover, nav a.active { color: var(--neon-yellow); }
+
+  /* ── HERO ── */
+  .hero {
+    margin-top: 80px; padding: 80px 40px 60px;
+    text-align: center;
+    position: relative;
+    border-bottom: 1px solid var(--border-color);
+  }
+  .hero::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(157,78,221,0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 50%, rgba(13,242,201,0.06) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .hero h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 48px; font-weight: 900;
+    letter-spacing: 6px;
+    margin-bottom: 16px;
+  }
+  .hero h1 .accent { color: var(--neon-yellow); }
+  .hero h1 .teal { color: var(--terminal-green); }
+  .hero p {
+    font-size: 16px; color: #94A3B8;
+    max-width: 640px; margin: 0 auto 32px;
+  }
+  .search-bar {
+    max-width: 600px; margin: 0 auto;
+    display: flex; gap: 0;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .search-bar input {
+    flex: 1; padding: 14px 20px;
+    background: var(--card-bg);
+    border: none; color: var(--text-color);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 14px;
+    outline: none;
+  }
+  .search-bar input::placeholder { color: #475569; }
+  .search-bar button {
+    padding: 14px 28px;
+    background: var(--neon-yellow);
+    border: none; cursor: pointer;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 12px; font-weight: 700;
+    letter-spacing: 2px; color: var(--dark-blue);
+    text-transform: uppercase;
+  }
+  .search-bar button:hover { background: #FFE44D; }
+
+  /* ── STATS BAR ── */
+  .stats {
+    display: flex; justify-content: center; gap: 48px;
+    padding: 24px 40px;
+    border-bottom: 1px solid var(--border-color);
+    background: rgba(17,24,39,0.5);
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 28px; font-weight: 700;
+    color: var(--terminal-green);
+  }
+  .stat-label {
+    font-size: 11px; letter-spacing: 2px;
+    text-transform: uppercase; color: #64748B;
+    margin-top: 4px;
+  }
+
+  /* ── CATEGORIES ── */
+  .section { padding: 60px 40px; }
+  .section-header {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 32px;
+  }
+  .section-tag {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 10px; letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--dark-blue);
+    background: var(--neon-yellow);
+    padding: 4px 12px;
+    border-radius: 2px;
+  }
+  .section-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 22px; font-weight: 700;
+    letter-spacing: 3px;
+  }
+
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .category-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 28px;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .category-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0;
+    width: 3px; height: 100%;
+    transition: background 0.3s;
+  }
+  .category-card:hover {
+    border-color: var(--neon-yellow);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(255,216,0,0.05);
+  }
+  .category-card:hover::before { background: var(--neon-yellow); }
+  .cat-icon {
+    font-size: 28px;
+    margin-bottom: 12px;
+  }
+  .cat-name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+  .cat-desc {
+    font-size: 13px; color: #94A3B8;
+    margin-bottom: 12px;
+  }
+  .cat-count {
+    font-size: 11px;
+    color: var(--terminal-green);
+    letter-spacing: 1px;
+  }
+
+  /* ── FEATURED LISTINGS ── */
+  .featured-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+  }
+  .listing-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 24px;
+    display: flex; gap: 16px;
+    transition: all 0.3s;
+  }
+  .listing-card:hover {
+    border-color: var(--terminal-green);
+    box-shadow: 0 4px 20px rgba(13,242,201,0.05);
+  }
+  .listing-logo {
+    width: 48px; height: 48px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .listing-info { flex: 1; }
+  .listing-name {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+  .listing-desc {
+    font-size: 12px; color: #94A3B8;
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+  .listing-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+  .tag {
+    font-size: 10px; letter-spacing: 1px;
+    padding: 3px 10px;
+    border-radius: 2px;
+    text-transform: uppercase;
+  }
+  .tag-ai { background: rgba(157,78,221,0.2); color: var(--purple-accent); }
+  .tag-dc { background: rgba(13,242,201,0.15); color: var(--terminal-green); }
+  .tag-cloud { background: rgba(255,216,0,0.15); color: var(--neon-yellow); }
+  .tag-policy { background: rgba(255,46,99,0.15); color: var(--accent-color); }
+
+  /* ── NEWS SECTION ── */
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  .news-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    padding: 24px;
+    transition: all 0.3s;
+  }
+  .news-card:hover { border-color: var(--accent-color); }
+  .news-meta {
+    display: flex; justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .news-source {
+    font-size: 10px; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--accent-color);
+  }
+  .news-date {
+    font-size: 10px; color: #475569;
+  }
+  .news-title {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 14px; font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+  .news-summary {
+    font-size: 13px; color: #94A3B8; line-height: 1.5;
+  }
+
+  /* ── CTA / SUBMIT ── */
+  .cta-section {
+    text-align: center;
+    padding: 80px 40px;
+    background: linear-gradient(180deg, transparent, rgba(157,78,221,0.05), transparent);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+  }
+  .cta-section h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 24px; letter-spacing: 4px;
+    margin-bottom: 16px;
+  }
+  .cta-section p {
+    color: #94A3B8; font-size: 14px;
+    max-width: 500px; margin: 0 auto 32px;
+  }
+  .cta-btn {
+    display: inline-block;
+    padding: 14px 40px;
+    background: transparent;
+    border: 2px solid var(--neon-yellow);
+    color: var(--neon-yellow);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 12px; font-weight: 700;
+    letter-spacing: 3px; text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  .cta-btn:hover {
+    background: var(--neon-yellow);
+    color: var(--dark-blue);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 40px;
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+    font-size: 12px; color: #475569;
+  }
+
+  /* ── CORNER DECORATIONS ── */
+  .corner-deco {
+    position: absolute;
+    width: 20px; height: 20px;
+    border-color: var(--neon-yellow);
+    opacity: 0.3;
+  }
+  .corner-tl { top: 12px; left: 12px; border-top: 1px solid; border-left: 1px solid; }
+  .corner-tr { top: 12px; right: 12px; border-top: 1px solid; border-right: 1px solid; }
+  .corner-bl { bottom: 12px; left: 12px; border-bottom: 1px solid; border-left: 1px solid; }
+  .corner-br { bottom: 12px; right: 12px; border-bottom: 1px solid; border-right: 1px solid; }
+
+  /* ── MOCKUP BADGE ── */
+  .mockup-badge {
+    position: fixed; bottom: 20px; right: 20px; z-index: 200;
+    background: var(--accent-color);
+    color: white;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 10px; letter-spacing: 2px;
+    padding: 8px 16px;
+    border-radius: 2px;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 28px; letter-spacing: 3px; }
+    .stats { gap: 24px; flex-wrap: wrap; }
+    nav { padding: 12px 20px; }
+    nav ul { gap: 16px; }
+    .section { padding: 40px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="mockup-badge">MOCKUP v1.0</div>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">BREEZ<span>BLOX</span></div>
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Studio</a></li>
+    <li><a href="#" class="active">Directory</a></li>
+    <li><a href="#">Blog</a></li>
+    <li><a href="#">About</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="corner-deco corner-tl"></div>
+  <div class="corner-deco corner-tr"></div>
+  <h1>THE <span class="accent">AI</span> + <span class="teal">DATA CENTER</span><br>DIRECTORY</h1>
+  <p>Discover companies, tools, and resources at the intersection of artificial intelligence and physical infrastructure.</p>
+  <div class="search-bar">
+    <input type="text" placeholder="Search listings, categories, or keywords...">
+    <button>Search</button>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat-item">
+    <div class="stat-num">147</div>
+    <div class="stat-label">Listings</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">12</div>
+    <div class="stat-label">Categories</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">38</div>
+    <div class="stat-label">Articles</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">Daily</div>
+    <div class="stat-label">News Updates</div>
+  </div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-tag">Browse</span>
+    <h2 class="section-title">CATEGORIES</h2>
+  </div>
+  <div class="categories-grid">
+    <div class="category-card">
+      <div class="cat-icon">&#x1F9E0;</div>
+      <div class="cat-name">AI MODEL PROVIDERS</div>
+      <div class="cat-desc">Foundation models, open-source hubs, fine-tuning platforms</div>
+      <div class="cat-count">24 LISTINGS</div>
+    </div>
+    <div class="category-card">
+      <div class="cat-icon">&#x1F6E0;</div>
+      <div class="cat-name">AI DEVELOPER TOOLS</div>
+      <div class="cat-desc">IDEs, coding assistants, eval frameworks, prompt engineering</div>
+      <div class="cat-count">31 LISTINGS</div>
+    </div>
+    <div class="category-card">
+      <div class="cat-icon">&#x2744;</div>
+      <div class="cat-name">CONTAINMENT SOLUTIONS</div>
+      <div class="cat-desc">Hot/cold aisle containment, custom enclosures, modular systems</div>
+      <div class="cat-count">12 LISTINGS</div>
+    </div>
+    <div class="category-card">
+      <div class="cat-icon">&#x1F4A7;</div>
+      <div class="cat-name">COOLING & THERMAL</div>
+      <div class="cat-desc">Liquid cooling, immersion, CRAC/CRAH, heat exchangers</div>
+      <div class="cat-count">18 LISTINGS</div>
+    </div>
+    <div class="category-card">
+      <div class="cat-icon">&#x26A1;</div>
+      <div class="cat-name">POWER & ELECTRICAL</div>
+      <div class="cat-desc">UPS, PDUs, generators, busway, energy storage</div>
+      <div class="cat-count">15 LISTINGS</div>
+    </div>
+    <div class="category-card">
+      <div class="cat-icon">&#x2601;</div>
+      <div class="cat-name">GPU CLOUD PROVIDERS</div>
+      <div class="cat-desc">On-demand GPU, reserved capacity, spot pricing</div>
+      <div class="cat-count">19 LISTINGS</div>
+    </div>
+    <div class="category-card">
+      <div class="cat-icon">&#x1F3DB;</div>
+      <div class="cat-name">COLOCATION</div>
+      <div class="cat-desc">Retail colo, wholesale, edge, AI-ready facilities</div>
+      <div class="cat-count">14 LISTINGS</div>
+    </div>
+    <div class="category-card">
+      <div class="cat-icon">&#x1F4DC;</div>
+      <div class="cat-name">AI POLICY & GOVERNANCE</div>
+      <div class="cat-desc">Regulation, executive orders, safety frameworks</div>
+      <div class="cat-count">8 LISTINGS</div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED LISTINGS -->
+<section class="section" style="background: rgba(17,24,39,0.3);">
+  <div class="section-header">
+    <span class="section-tag">Featured</span>
+    <h2 class="section-title">TOP LISTINGS</h2>
+  </div>
+  <div class="featured-grid">
+    <div class="listing-card">
+      <div class="listing-logo" style="background: linear-gradient(135deg, #7C3AED, #9D4EDD);">&#x2728;</div>
+      <div class="listing-info">
+        <div class="listing-name">ANTHROPIC</div>
+        <div class="listing-desc">Creator of Claude — frontier AI models for enterprises and developers with a focus on safety.</div>
+        <div class="listing-tags">
+          <span class="tag tag-ai">AI Models</span>
+          <span class="tag tag-cloud">Enterprise</span>
+        </div>
+      </div>
+    </div>
+    <div class="listing-card">
+      <div class="listing-logo" style="background: linear-gradient(135deg, #059669, #0DF2C9);">&#x1F50C;</div>
+      <div class="listing-info">
+        <div class="listing-name">VERTIV</div>
+        <div class="listing-desc">Global leader in critical digital infrastructure including power, cooling, and IT management systems.</div>
+        <div class="listing-tags">
+          <span class="tag tag-dc">Power</span>
+          <span class="tag tag-dc">Cooling</span>
+        </div>
+      </div>
+    </div>
+    <div class="listing-card">
+      <div class="listing-logo" style="background: linear-gradient(135deg, #D97706, #FFD800);">&#x1F680;</div>
+      <div class="listing-info">
+        <div class="listing-name">COREWEAVE</div>
+        <div class="listing-desc">GPU-specialized cloud provider built for large-scale AI and ML workloads at scale.</div>
+        <div class="listing-tags">
+          <span class="tag tag-cloud">GPU Cloud</span>
+          <span class="tag tag-ai">AI Infra</span>
+        </div>
+      </div>
+    </div>
+    <div class="listing-card">
+      <div class="listing-logo" style="background: linear-gradient(135deg, #DC2626, #FF2E63);">&#x1F3D7;</div>
+      <div class="listing-info">
+        <div class="listing-name">SCHNEIDER ELECTRIC</div>
+        <div class="listing-desc">End-to-end data center solutions from design and build to power distribution and cooling.</div>
+        <div class="listing-tags">
+          <span class="tag tag-dc">Containment</span>
+          <span class="tag tag-dc">Power</span>
+        </div>
+      </div>
+    </div>
+    <div class="listing-card">
+      <div class="listing-logo" style="background: linear-gradient(135deg, #1D4ED8, #3B82F6);">&#x1F916;</div>
+      <div class="listing-info">
+        <div class="listing-name">HUGGING FACE</div>
+        <div class="listing-desc">The hub for open-source AI models, datasets, and machine learning collaboration.</div>
+        <div class="listing-tags">
+          <span class="tag tag-ai">AI Models</span>
+          <span class="tag tag-ai">Open Source</span>
+        </div>
+      </div>
+    </div>
+    <div class="listing-card">
+      <div class="listing-logo" style="background: linear-gradient(135deg, #0891B2, #22D3EE);">&#x1F4CA;</div>
+      <div class="listing-info">
+        <div class="listing-name">NLYTE SOFTWARE</div>
+        <div class="listing-desc">Data center infrastructure management (DCIM) for asset tracking, capacity planning, and energy optimization.</div>
+        <div class="listing-tags">
+          <span class="tag tag-dc">DCIM</span>
+          <span class="tag tag-dc">Monitoring</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRENDING NEWS -->
+<section class="section">
+  <div class="section-header">
+    <span class="section-tag" style="background: var(--accent-color); color: white;">Live</span>
+    <h2 class="section-title">TRENDING NEWS</h2>
+  </div>
+  <div class="news-grid">
+    <div class="news-card">
+      <div class="news-meta">
+        <span class="news-source">Data Center Dynamics</span>
+        <span class="news-date">Feb 18, 2026</span>
+      </div>
+      <div class="news-title">NEW LIQUID COOLING STANDARD PROPOSED FOR AI-DENSE RACKS</div>
+      <div class="news-summary">Industry consortium proposes standardized liquid cooling connections to address the thermal challenges of racks exceeding 100kW per cabinet in AI training clusters.</div>
+    </div>
+    <div class="news-card">
+      <div class="news-meta">
+        <span class="news-source">AI Daily Brief</span>
+        <span class="news-date">Feb 18, 2026</span>
+      </div>
+      <div class="news-title">OPEN-SOURCE MODEL BENCHMARK UPDATE: Q1 2026 RANKINGS</div>
+      <div class="news-summary">New benchmark results show significant performance gains across the top open-source models, narrowing the gap with proprietary frontier systems.</div>
+    </div>
+    <div class="news-card">
+      <div class="news-meta">
+        <span class="news-source">Utility Dive</span>
+        <span class="news-date">Feb 17, 2026</span>
+      </div>
+      <div class="news-title">FIVE STATES PROPOSE DATA CENTER ENERGY DISCLOSURE REQUIREMENTS</div>
+      <div class="news-summary">Legislation in five states would require data center operators to publicly report energy consumption and renewable energy usage on an annual basis.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>LIST YOUR COMPANY</h2>
+  <p>Are you building AI tools or data center infrastructure? Get discovered by the people who need what you offer.</p>
+  <a href="#" class="cta-btn">Submit a Listing</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 BREEZBLOX // DESIGN . CREATE . IMPROVE</p>
+  <p style="margin-top: 8px; font-size: 11px;">AI + DATA CENTER DIRECTORY — BUILT BY ROB</p>
+</footer>
+
+</body>
+</html>

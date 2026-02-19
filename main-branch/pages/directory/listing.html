@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BREEZBLOX // Listing Detail</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; script-src 'self' 'unsafe-inline';">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/directory.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap">
+</head>
+<body>
+    <div class="noise"></div>
+    <div class="glitch-line"></div>
+    <div class="glitch-line"></div>
+    <div class="glitch-line"></div>
+    <div class="distortion"></div>
+    <div class="technical-overlay"></div>
+
+    <header>
+        <div class="logo">BREEZBLOX.com</div>
+        <div class="tag-line">DESIGN . CREATE . IMPROVE</div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="../../index.html">HOME</a></li>
+            <li><a href="../studio.html">STUDIO</a></li>
+            <li><a href="index.html" class="active">DIRECTORY</a></li>
+            <li><a href="../about.html">ABOUT ME</a></li>
+        </ul>
+    </nav>
+
+    <div class="dir-container">
+        <div class="dir-detail" id="detailContent">
+            <a href="browse.html" class="dir-back">BACK TO DIRECTORY</a>
+            <div id="detailInner"></div>
+        </div>
+
+        <section class="dir-section" id="relatedSection" style="display: none;">
+            <div class="dir-section-header">
+                <span class="dir-tag">RELATED</span>
+                <h2 class="dir-section-title">SIMILAR LISTINGS</h2>
+            </div>
+            <div class="dir-listings" id="relatedGrid"></div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="logo">BREEZBLOX.com</div>
+        <div class="copyright">&copy; 2026 | AI + DATA CENTER DIRECTORY</div>
+    </footer>
+
+    <div class="tech-element tech-1">DIR:ACTIVE:DETAIL</div>
+    <div class="tech-element tech-2">LISTING:LOADED</div>
+    <div class="tech-element tech-3">DATA//RESOLVED</div>
+    <div class="tech-element tech-4">RENDER:COMPLETE</div>
+
+    <script>
+    let listings = [];
+    let categories = [];
+
+    const LOGO_GRADIENTS = [
+        'linear-gradient(135deg, #7C3AED, #9D4EDD)',
+        'linear-gradient(135deg, #059669, #0DF2C9)',
+        'linear-gradient(135deg, #D97706, #FFD800)',
+        'linear-gradient(135deg, #DC2626, #FF2E63)',
+        'linear-gradient(135deg, #1D4ED8, #3B82F6)',
+        'linear-gradient(135deg, #0891B2, #22D3EE)',
+        'linear-gradient(135deg, #7C3AED, #A78BFA)',
+        'linear-gradient(135deg, #059669, #34D399)'
+    ];
+
+    const FALLBACK_CATEGORY_NAMES = {
+        'ai-models': 'AI Model Providers',
+        'ai-dev-tools': 'AI Developer Tools',
+        'ai-infra-software': 'AI Infrastructure Software',
+        'ai-platforms': 'AI Application Platforms',
+        'containment': 'Containment Solutions',
+        'cooling': 'Cooling & Thermal',
+        'power': 'Power & Electrical',
+        'cabling': 'Structured Cabling',
+        'construction': 'Construction & Facility',
+        'dcim': 'Monitoring & DCIM',
+        'gpu-cloud': 'GPU Cloud Providers',
+        'colocation': 'Colocation Providers',
+        'ai-policy': 'AI Policy & Governance',
+        'energy': 'Energy & Sustainability'
+    };
+
+    const FALLBACK_CATEGORY_PARENTS = {
+        'ai-models': 'ai',
+        'ai-dev-tools': 'ai',
+        'ai-infra-software': 'ai',
+        'ai-platforms': 'ai',
+        'containment': 'datacenter',
+        'cooling': 'datacenter',
+        'power': 'datacenter',
+        'cabling': 'datacenter',
+        'construction': 'datacenter',
+        'dcim': 'datacenter',
+        'gpu-cloud': 'cloud',
+        'colocation': 'cloud',
+        'ai-policy': 'policy',
+        'energy': 'policy'
+    };
+
+    const MOCK_RELATED = [
+        {
+            id: 'mock-edgevault',
+            name: 'EdgeVault Compute',
+            description: 'Placeholder profile for distributed GPU availability and managed onboarding.',
+            category: 'gpu-cloud'
+        },
+        {
+            id: 'mock-coolframe',
+            name: 'CoolFrame Thermal',
+            description: 'Mock partner card focused on high-density cooling retrofits and monitoring.',
+            category: 'cooling'
+        },
+        {
+            id: 'mock-policygrid',
+            name: 'PolicyGrid Advisors',
+            description: 'Sample listing for compliance mapping and AI risk governance implementation.',
+            category: 'ai-policy'
+        }
+    ];
+
+    function getGradient(name) {
+        let hash = 0;
+        for (let i = 0; i < name.length; i++) hash = name.charCodeAt(i) + ((hash << 5) - hash);
+        return LOGO_GRADIENTS[Math.abs(hash) % LOGO_GRADIENTS.length];
+    }
+
+    function getInitials(name) {
+        return name.split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase();
+    }
+
+    function getTagClass(category) {
+        const cat = categories.find(c => c.id === category);
+        const parent = cat ? cat.parent : FALLBACK_CATEGORY_PARENTS[category];
+        const map = {
+            ai: 'dir-tag-pill--ai',
+            datacenter: 'dir-tag-pill--dc',
+            cloud: 'dir-tag-pill--cloud',
+            policy: 'dir-tag-pill--policy'
+        };
+        return map[parent] || 'dir-tag-pill--default';
+    }
+
+    function getCategoryName(id) {
+        const cat = categories.find(c => c.id === id);
+        return cat ? cat.name : (FALLBACK_CATEGORY_NAMES[id] || id);
+    }
+
+    function getParentName(categoryId) {
+        const cat = categories.find(c => c.id === categoryId);
+        const parent = cat ? cat.parent : FALLBACK_CATEGORY_PARENTS[categoryId];
+        const groups = {
+            ai: 'AI Development & Tools',
+            datacenter: 'Data Center & Infrastructure',
+            cloud: 'Cloud & Compute',
+            policy: 'Policy & Regulation'
+        };
+        return groups[parent] || 'Directory Category';
+    }
+
+    function buildMockMetrics(listing) {
+        const size = listing.name.length;
+        return [
+            { label: 'REGIONS', value: String(3 + (size % 7)) },
+            { label: 'DEPLOYMENTS', value: String(10 + (size % 19)) },
+            { label: 'AVG UPTIME', value: '99.95%' },
+            { label: 'INTEGRATION TIME', value: (2 + (size % 4)) + ' WKS' }
+        ];
+    }
+
+    function normalizeListing(input) {
+        return {
+            id: input.id,
+            name: input.name,
+            description: input.description || 'No description available yet.',
+            longDescription: input.longDescription || input.description || 'Detailed profile copy is still being drafted for this listing.',
+            category: input.category || 'gpu-cloud',
+            tags: Array.isArray(input.tags) && input.tags.length ? input.tags : ['placeholder', 'mock'],
+            website: input.website || 'https://example.com',
+            featured: Boolean(input.featured),
+            dateAdded: input.dateAdded || '2026-02-19'
+        };
+    }
+
+    function slugToTitle(value) {
+        return value
+            .replace(/[-_]+/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim()
+            .replace(/\b\w/g, c => c.toUpperCase()) || 'Placeholder Listing';
+    }
+
+    function getMockListing(requestedId) {
+        const title = slugToTitle(requestedId || 'placeholder-listing');
+        return normalizeListing({
+            id: requestedId || 'placeholder-listing',
+            name: title,
+            description: 'This is a mock profile card while final listing content is being prepared.',
+            longDescription: 'This placeholder represents the structure and depth of a completed listing profile. Final copy would include technical differentiation, deployment examples, buyer fit, and procurement context.',
+            category: 'gpu-cloud',
+            tags: ['mockup', 'preview', 'placeholder'],
+            website: 'https://example.com',
+            featured: true,
+            dateAdded: '2026-02-19'
+        });
+    }
+
+    function renderDetail(rawListing, options = {}) {
+        const listing = normalizeListing(rawListing);
+        const metrics = buildMockMetrics(listing);
+        const stackItems = listing.tags.slice(0, 4).map(tag => tag.toUpperCase());
+        const note = options.note || '';
+
+        document.title = `BREEZBLOX // ${listing.name}`;
+        const inner = document.getElementById('detailInner');
+
+        inner.innerHTML = `
+            ${note ? `<div class="dir-placeholder-note">${note}</div>` : ''}
+
+            <div class="dir-detail-header">
+                <div class="dir-detail-logo" style="background: ${getGradient(listing.name)}">${getInitials(listing.name)}</div>
+                <div>
+                    <div class="dir-detail-title">${listing.name}</div>
+                    <div class="dir-detail-cat">${getParentName(listing.category)} // ${getCategoryName(listing.category)}</div>
+                    <div class="dir-listing-tags">
+                        <span class="dir-tag-pill ${getTagClass(listing.category)}">${getCategoryName(listing.category)}</span>
+                        ${listing.tags.map(t => `<span class="dir-tag-pill dir-tag-pill--default">${t}</span>`).join('')}
+                    </div>
+                </div>
+            </div>
+
+            <div class="dir-detail-banner">
+                <div class="dir-detail-banner-title">PLATFORM SNAPSHOT (MOCKUP)</div>
+                <p>Reference framework for a finished profile section covering capabilities, operational posture, and implementation readiness.</p>
+                <div class="dir-detail-metrics">
+                    ${metrics.map(metric => `
+                        <div class="dir-detail-metric">
+                            <span class="dir-detail-metric-label">${metric.label}</span>
+                            <span class="dir-detail-metric-value">${metric.value}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+
+            <div class="dir-detail-body">
+                <p>${listing.longDescription}</p>
+            </div>
+
+            <div class="dir-detail-stack">
+                ${stackItems.map(item => `<span class="dir-detail-stack-item">${item}</span>`).join('')}
+            </div>
+
+            <div class="dir-detail-meta">
+                <div class="dir-detail-meta-item">
+                    <span class="dir-detail-meta-label">WEBSITE</span>
+                    <span class="dir-detail-meta-value"><a href="${listing.website}" target="_blank" rel="noopener">${listing.website.replace(/^https?:\/\//, '')}</a></span>
+                </div>
+                <div class="dir-detail-meta-item">
+                    <span class="dir-detail-meta-label">CATEGORY</span>
+                    <span class="dir-detail-meta-value">${getCategoryName(listing.category)}</span>
+                </div>
+                <div class="dir-detail-meta-item">
+                    <span class="dir-detail-meta-label">ADDED</span>
+                    <span class="dir-detail-meta-value">${listing.dateAdded}</span>
+                </div>
+                <div class="dir-detail-meta-item">
+                    <span class="dir-detail-meta-label">STATUS</span>
+                    <span class="dir-detail-meta-value">${options.isMock ? 'PREVIEW MODE' : (listing.featured ? 'FEATURED' : 'LISTED')}</span>
+                </div>
+            </div>
+        `;
+    }
+
+    function renderRelated(listing) {
+        const related = listings
+            .filter(l => l.category === listing.category && l.id !== listing.id && l.status === 'published')
+            .slice(0, 3);
+
+        if (related.length === 0) {
+            renderMockRelated();
+            return;
+        }
+
+        document.getElementById('relatedSection').style.display = 'block';
+        document.getElementById('relatedGrid').innerHTML = related.map(l => `
+            <a href="listing.html?id=${l.id}" class="dir-listing">
+                <div class="dir-listing-logo" style="background: ${getGradient(l.name)}">${getInitials(l.name)}</div>
+                <div class="dir-listing-info">
+                    <div class="dir-listing-name">${l.name}</div>
+                    <div class="dir-listing-desc">${l.description}</div>
+                    <div class="dir-listing-tags">
+                        <span class="dir-tag-pill ${getTagClass(l.category)}">${getCategoryName(l.category)}</span>
+                    </div>
+                </div>
+            </a>
+        `).join('');
+    }
+
+    function renderMockRelated() {
+        document.getElementById('relatedSection').style.display = 'block';
+        document.getElementById('relatedGrid').innerHTML = MOCK_RELATED.map(l => `
+            <a href="listing.html?id=${l.id}" class="dir-listing">
+                <div class="dir-listing-logo" style="background: ${getGradient(l.name)}">${getInitials(l.name)}</div>
+                <div class="dir-listing-info">
+                    <div class="dir-listing-name">${l.name}</div>
+                    <div class="dir-listing-desc">${l.description}</div>
+                    <div class="dir-listing-tags">
+                        <span class="dir-tag-pill ${getTagClass(l.category)}">${getCategoryName(l.category)}</span>
+                        <span class="dir-tag-pill dir-tag-pill--default">mock</span>
+                    </div>
+                </div>
+            </a>
+        `).join('');
+    }
+
+    async function init() {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
+
+        if (!id) {
+            window.location.href = 'browse.html';
+            return;
+        }
+
+        renderDetail(getMockListing(id), {
+            isMock: true,
+            note: 'Preview placeholder while directory profile data is loading.'
+        });
+        renderMockRelated();
+
+        try {
+            const [listingsRes, categoriesRes] = await Promise.all([
+                fetch('../../data/listings.json'),
+                fetch('../../data/categories.json')
+            ]);
+
+            listings = await listingsRes.json();
+            const catData = await categoriesRes.json();
+            categories = catData.categories || [];
+
+            const listing = listings.find(l => l.id === id && l.status === 'published');
+            if (!listing) {
+                renderDetail(getMockListing(id), {
+                    isMock: true,
+                    note: 'No published listing matched this id yet. Showing a mock profile placeholder.'
+                });
+                renderMockRelated();
+                return;
+            }
+
+            renderDetail(listing, { isMock: false });
+            renderRelated(listing);
+        } catch (err) {
+            console.error('Failed to load listing data:', err);
+            renderDetail(getMockListing(id), {
+                isMock: true,
+                note: 'Directory data is currently unavailable. Showing a mock profile placeholder.'
+            });
+            renderMockRelated();
+        }
+    }
+
+    init();
+    </script>
+</body>
+</html>

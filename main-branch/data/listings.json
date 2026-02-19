@@ -1,0 +1,574 @@
+{
+    "listings": [
+        {
+            "name": "OpenAI",
+            "slug": "openai",
+            "logo_url": "",
+            "description_short": "Creator of GPT models and the ChatGPT platform for AI development.",
+            "description_long": "OpenAI develops and deploys advanced AI models including GPT-4, DALL-E, and Whisper. Their API platform serves millions of developers building AI-powered applications across industries.",
+            "category": "ai-tools",
+            "subcategory": "ai-model-providers",
+            "tags": [
+                "enterprise",
+                "global",
+                "freemium",
+                "tool"
+            ],
+            "website_url": "https://openai.com",
+            "featured": true,
+            "date_added": "2026-02-18",
+            "status": "published"
+        },
+        {
+            "name": "Anthropic",
+            "slug": "anthropic",
+            "logo_url": "",
+            "description_short": "AI safety company building reliable, steerable AI systems.",
+            "description_long": "Anthropic builds Claude, a family of AI assistants focused on safety and helpfulness. Their Constitutional AI approach emphasizes building systems that are honest, harmless, and helpful.",
+            "category": "ai-tools",
+            "subcategory": "ai-model-providers",
+            "tags": [
+                "enterprise",
+                "global",
+                "paid",
+                "tool"
+            ],
+            "website_url": "https://anthropic.com",
+            "featured": true,
+            "date_added": "2026-02-18",
+            "status": "published"
+        },
+        {
+            "name": "Google DeepMind",
+            "slug": "google-deepmind",
+            "logo_url": "",
+            "description_short": "Google's AI research lab behind Gemini and breakthrough research.",
+            "description_long": "Google DeepMind combines fundamental AI research with engineering to build advanced AI systems. Creators of Gemini, AlphaFold, and other groundbreaking AI technologies.",
+            "category": "ai-tools",
+            "subcategory": "ai-model-providers",
+            "tags": [
+                "enterprise",
+                "global",
+                "freemium",
+                "tool"
+            ],
+            "website_url": "https://deepmind.google",
+            "featured": true,
+            "date_added": "2026-02-18",
+            "status": "published"
+        },
+        {
+            "name": "Meta AI (LLaMA)",
+            "slug": "meta-ai",
+            "logo_url": "",
+            "description_short": "Open-source AI models and research from Meta's AI division.",
+            "description_long": "Meta AI develops and open-sources the LLaMA family of large language models, making powerful AI accessible to researchers and developers worldwide.",
+            "category": "ai-tools",
+            "subcategory": "ai-model-providers",
+            "tags": [
+                "enterprise",
+                "global",
+                "free",
+                "tool"
+            ],
+            "website_url": "https://ai.meta.com",
+            "featured": false,
+            "date_added": "2026-02-18",
+            "status": "published"
+        },
+        {
+            "name": "Hugging Face",
+            "slug": "hugging-face",
+            "logo_url": "",
+            "description_short": "The open-source AI community hub for models, datasets, and apps.",
+            "description_long": "Hugging Face is the largest open-source machine learning community. Host to hundreds of thousands of models, datasets, and ML demos with tools like Transformers, Diffusers, and Spaces.",
+            "category": "ai-tools",
+            "subcategory": "ai-model-providers",
+            "tags": [
+                "mid-market",
+                "global",
+                "freemium",
+                "resource"
+            ],
+            "website_url": "https://huggingface.co",
+            "featured": true,
+            "date_added": "2026-02-18",
+            "status": "published"
+        },
+        {
+            "name": "Cursor",
+            "slug": "cursor",
+            "logo_url": "",
+            "description_short": "AI-native code editor built for modern software development.",
+            "description_long": "Cursor is an AI-first code editor that integrates language models directly into the development workflow. Features include AI-powered code completion, inline editing, and codebase-aware chat.",
+            "category": "ai-tools",
+            "subcategory": "ai-developer-tools",
+            "tags": [
+                "startup",
+                "global",
+                "freemium",
+                "tool"
+            ],
+            "website_url": "https://cursor.com",
+            "featured": false,
+            "date_added": "2026-02-18",
+            "status": "published"
+        },
+        {
+            "name": "LangChain",
+            "slug": "langchain",
+            "logo_url": "",
+            "description_short": "Framework for building applications powered by language models.",
+            "description_long": "LangChain provides tools and abstractions for building LLM-powered applications including RAG pipelines, agents, and chains. Supports Python and JavaScript with extensive integrations.",
+            "category": "ai-tools",
+            "subcategory": "ai-developer-tools",
+            "tags": [
+                "startup",
+                "global",
+                "freemium",
+                "tool"
+            ],
+            "website_url": "https://langchain.com",
+            "featured": false,
+            "date_added": "2026-02-18",
+            "status": "published"
+        },
+        {
+            "name": "Weights & Biases",
+            "slug": "wandb",
+            "logo_url": "",
+            "description_short": "ML experiment tracking, model management, and dataset versioning.",
+            "description_long": "Weights & Biases provides a developer-first MLOps platform for experiment tracking, model evaluation, dataset versioning, and collaborative AI development workflows.",
+            "category": "ai-tools",
+            "subcategory": "ai-infrastructure-software",
+            "tags": [
+                "mid-market",
+                "global",
+                "freemium",
+                "tool"
+            ],
+            "website_url": "https://wandb.ai",
+            "featured": false,
+            "date_added": "2026-02-18",
+            "status": "published"
+        },
+        {
+            "name": "Pinecone",
+            "slug": "pinecone",
+            "logo_url": "",
+            "description_short": "Managed vector database for AI-powered search and retrieval.",
+            "description_long": "Pinecone provides a fully managed vector database purpose-built for machine learning applications. Enables similarity search, recommendation systems, and RAG at scale.",
+            "category": "ai-tools",
+            "subcategory": "ai-infrastructure-software",
+            "tags": [
+                "mid-market",
+                "global",
+                "freemium",
+                "tool"
+            ],
+            "website_url": "https://pinecone.io",
+            "featured": false,
+            "date_added": "2026-02-18",
+            "status": "published"
+        },
+        {
+            "name": "Replicate",
+            "slug": "replicate",
+            "logo_url": "",
+            "description_short": "Run and deploy open-source AI models with a cloud API.",
+            "description_long": "Replicate lets you run open-source machine learning models in the cloud with a simple API. Deploy custom models or use thousands of community models for image generation, language, audio, and video.",
+            "category": "ai-tools",
+            "subcategory": "ai-application-platforms",
+            "tags": [
+                "startup",
+                "global",
+                "paid",
+                "tool"
+            ],
+            "website_url": "https://replicate.com",
+            "featured": false,
+            "date_added": "2026-02-18",
+            "status": "published"
+        },
+        {
+            "name": "fast.ai",
+            "slug": "fastai",
+            "logo_url": "",
+            "description_short": "Free deep learning courses and open-source library.",
+            "description_long": "fast.ai offers practical deep learning courses used by hundreds of thousands of students. Their open-source library makes deep learning accessible with best practices built in.",
+            "category": "ai-tools",
+            "subcategory": "ai-research-education",
+            "tags": [
+                "startup",
+                "global",
+                "free",
+                "resource"
+            ],
+            "website_url": "https://fast.ai",
+            "featured": false,
+            "date_added": "2026-02-18",
+            "status": "published"
+        },
+        {
+            "name": "Vertiv",
+            "slug": "vertiv",
+            "logo_url": "",
+            "description_short": "Critical digital infrastructure and continuity solutions.",
+            "description_long": "Vertiv designs, builds, and services critical infrastructure for data centers, communication networks, and commercial/industrial environments. Products include power management, thermal management, and IT infrastructure.",
+            "category": "dc-infrastructure",
+            "subcategory": "containment-solutions",
+            "tags": [
+                "enterprise",
+                "global",
+                "enterprise",
+                "service"
+            ],
+            "website_url": "https://vertiv.com",
+            "featured": true,
+            "date_added": "2026-02-18",
+            "status": "published"
+        },
+        {
+            "name": "Schneider Electric",
+            "slug": "schneider-electric",
+            "logo_url": "",
+            "description_short": "Energy management and automation for data centers.",
+            "description_long": "Schneider Electric provides integrated solutions for data center power distribution, cooling, and management through their APC and EcoStruxure product lines.",
+            "category": "dc-infrastructure",
+            "subcategory": "power-electrical",
+            "tags": [
+                "enterprise",
+                "global",
+                "enterprise",
+                "service"
+            ],
+            "website_url": "https://schneider-electric.com",
+            "featured": true,
+            "date_added": "2026-02-18",
+            "status": "published"
+        },
+        {
+            "name": "Upsite Technologies",
+            "slug": "upsite-technologies",
+            "logo_url": "",
+            "description_short": "Airflow management and containment solutions for data centers.",
+            "description_long": "Upsite Technologies specializes in data center airflow management products including hot aisle containment, blanking panels, and grommets to improve cooling efficiency.",
+            "category": "dc-infrastructure",
+            "subcategory": "containment-solutions",
+            "tags": [
+                "mid-market",
+                "us-east",
+                "paid",
+                "service"
+            ],
+            "website_url": "https://upsite.com",
+            "featured": false,
+            "date_added": "2026-02-18",
+            "status": "published"
+        },
+        {
+            "name": "Submer",
+            "slug": "submer",
+            "logo_url": "",
+            "description_short": "Immersion cooling technology for high-density compute.",
+            "description_long": "Submer develops precision immersion cooling solutions for data centers and edge deployments. Their SmartPod systems enable high-density computing with dramatically reduced energy consumption.",
+            "category": "dc-infrastructure",
+            "subcategory": "cooling-thermal",
+            "tags": [
+                "mid-market",
+                "europe",
+                "enterprise",
+                "service"
+            ],
+            "website_url": "https://submer.com",
+            "featured": false,
+            "date_added": "2026-02-18",
+            "status": "published"
+        },
+        {
+            "name": "GRC (Green Revolution Cooling)",
+            "slug": "grc-cooling",
+            "logo_url": "",
+            "description_short": "Single-phase immersion cooling for data center efficiency.",
+            "description_long": "GRC provides patented single-phase immersion cooling solutions that eliminate the need for chillers, CRACs, and raised floors while reducing cooling energy by up to 95%.",
+            "category": "dc-infrastructure",
+            "subcategory": "cooling-thermal",
+            "tags": [
+                "mid-market",
+                "us-central",
+                "enterprise",
+                "service"
+            ],
+            "website_url": "https://grcooling.com",
+            "featured": false,
+            "date_added": "2026-02-18",
+            "status": "published"
+        },
+        {
+            "name": "Eaton",
+            "slug": "eaton",
+            "logo_url": "",
+            "description_short": "Power management solutions for data center reliability.",
+            "description_long": "Eaton delivers power distribution, UPS systems, and energy storage solutions for data centers of all sizes. Their ePDU and UPS product lines are industry standards.",
+            "category": "dc-infrastructure",
+            "subcategory": "power-electrical",
+            "tags": [
+                "enterprise",
+                "global",
+                "enterprise",
+                "service"
+            ],
+            "website_url": "https://eaton.com",
+            "featured": false,
+            "date_added": "2026-02-18",
+            "status": "published"
+        },
+        {
+            "name": "Panduit",
+            "slug": "panduit",
+            "logo_url": "",
+            "description_short": "Network infrastructure and cable management solutions.",
+            "description_long": "Panduit provides physical and network infrastructure solutions including structured cabling, cable management, and data center containment systems.",
+            "category": "dc-infrastructure",
+            "subcategory": "cabling-connectivity",
+            "tags": [
+                "enterprise",
+                "global",
+                "enterprise",
+                "service"
+            ],
+            "website_url": "https://panduit.com",
+            "featured": false,
+            "date_added": "2026-02-18",
+            "status": "published"
+        },
+        {
+            "name": "Holder Construction",
+            "slug": "holder-construction",
+            "logo_url": "",
+            "description_short": "Data center construction and design-build services.",
+            "description_long": "Holder Construction is a leading builder of mission critical facilities including hyperscale data centers, colocation facilities, and enterprise campuses across North America.",
+            "category": "dc-infrastructure",
+            "subcategory": "construction-facility",
+            "tags": [
+                "enterprise",
+                "us-east",
+                "enterprise",
+                "service"
+            ],
+            "website_url": "https://holderconstruction.com",
+            "featured": false,
+            "date_added": "2026-02-18",
+            "status": "published"
+        },
+        {
+            "name": "Nlyte Software",
+            "slug": "nlyte",
+            "logo_url": "",
+            "description_short": "DCIM platform for data center asset and capacity management.",
+            "description_long": "Nlyte provides enterprise DCIM software for managing data center assets, capacity, power, and cooling. Integrates with ITSM and BMS platforms for holistic facility management.",
+            "category": "dc-infrastructure",
+            "subcategory": "monitoring-dcim",
+            "tags": [
+                "mid-market",
+                "global",
+                "enterprise",
+                "tool"
+            ],
+            "website_url": "https://nlyte.com",
+            "featured": false,
+            "date_added": "2026-02-18",
+            "status": "published"
+        },
+        {
+            "name": "CoreWeave",
+            "slug": "coreweave",
+            "logo_url": "",
+            "description_short": "GPU-specialized cloud provider for AI and HPC workloads.",
+            "description_long": "CoreWeave operates GPU-accelerated cloud infrastructure purpose-built for AI training and inference, VFX rendering, and high-performance computing at scale.",
+            "category": "cloud-compute",
+            "subcategory": "gpu-cloud",
+            "tags": [
+                "mid-market",
+                "us-east",
+                "paid",
+                "service"
+            ],
+            "website_url": "https://coreweave.com",
+            "featured": true,
+            "date_added": "2026-02-18",
+            "status": "published"
+        },
+        {
+            "name": "Lambda",
+            "slug": "lambda",
+            "logo_url": "",
+            "description_short": "GPU cloud and on-prem infrastructure for deep learning.",
+            "description_long": "Lambda provides GPU cloud instances, on-prem servers, and workstations optimized for deep learning research and AI model training. Powers teams at top AI labs worldwide.",
+            "category": "cloud-compute",
+            "subcategory": "gpu-cloud",
+            "tags": [
+                "mid-market",
+                "us-west",
+                "paid",
+                "service"
+            ],
+            "website_url": "https://lambdalabs.com",
+            "featured": false,
+            "date_added": "2026-02-18",
+            "status": "published"
+        },
+        {
+            "name": "Together AI",
+            "slug": "together-ai",
+            "logo_url": "",
+            "description_short": "Cloud platform for running and fine-tuning open-source AI models.",
+            "description_long": "Together AI provides a cloud platform optimized for running, fine-tuning, and training open-source AI models with high performance and cost efficiency.",
+            "category": "cloud-compute",
+            "subcategory": "gpu-cloud",
+            "tags": [
+                "startup",
+                "us-west",
+                "paid",
+                "service"
+            ],
+            "website_url": "https://together.ai",
+            "featured": false,
+            "date_added": "2026-02-18",
+            "status": "published"
+        },
+        {
+            "name": "Equinix",
+            "slug": "equinix",
+            "logo_url": "",
+            "description_short": "Global interconnection and colocation data center platform.",
+            "description_long": "Equinix operates 260+ data centers worldwide, providing colocation, interconnection, and digital infrastructure services. The world's largest data center REIT.",
+            "category": "cloud-compute",
+            "subcategory": "colocation",
+            "tags": [
+                "enterprise",
+                "global",
+                "enterprise",
+                "service"
+            ],
+            "website_url": "https://equinix.com",
+            "featured": true,
+            "date_added": "2026-02-18",
+            "status": "published"
+        },
+        {
+            "name": "Digital Realty",
+            "slug": "digital-realty",
+            "logo_url": "",
+            "description_short": "Wholesale and colocation data center solutions worldwide.",
+            "description_long": "Digital Realty provides data center, colocation, and interconnection solutions across 50+ metros on six continents through their PlatformDIGITAL offering.",
+            "category": "cloud-compute",
+            "subcategory": "colocation",
+            "tags": [
+                "enterprise",
+                "global",
+                "enterprise",
+                "service"
+            ],
+            "website_url": "https://digitalrealty.com",
+            "featured": false,
+            "date_added": "2026-02-18",
+            "status": "published"
+        },
+        {
+            "name": "QTS Realty Trust",
+            "slug": "qts",
+            "logo_url": "",
+            "description_short": "Hyperscale and hybrid colocation data center provider.",
+            "description_long": "QTS provides mega-scale custom data center solutions for hyperscale, hybrid colocation, and managed hosting customers across North America.",
+            "category": "cloud-compute",
+            "subcategory": "hyperscale-wholesale",
+            "tags": [
+                "enterprise",
+                "us-east",
+                "enterprise",
+                "service"
+            ],
+            "website_url": "https://qtsdatacenters.com",
+            "featured": false,
+            "date_added": "2026-02-18",
+            "status": "published"
+        },
+        {
+            "name": "NIST AI Risk Management Framework",
+            "slug": "nist-ai-rmf",
+            "logo_url": "",
+            "description_short": "US federal framework for managing AI risks responsibly.",
+            "description_long": "The NIST AI Risk Management Framework provides voluntary guidance for organizations to manage AI risks, improve trustworthiness, and foster responsible AI development and use.",
+            "category": "policy-industry",
+            "subcategory": "ai-policy-governance",
+            "tags": [
+                "enterprise",
+                "us-east",
+                "free",
+                "resource"
+            ],
+            "website_url": "https://airc.nist.gov/AI_RMF_Interactivity",
+            "featured": false,
+            "date_added": "2026-02-18",
+            "status": "published"
+        },
+        {
+            "name": "The Green Grid",
+            "slug": "the-green-grid",
+            "logo_url": "",
+            "description_short": "Industry consortium advancing data center energy efficiency.",
+            "description_long": "The Green Grid is an open industry consortium dedicated to advancing energy efficiency in data centers and business computing ecosystems. Creators of the PUE metric.",
+            "category": "policy-industry",
+            "subcategory": "energy-sustainability",
+            "tags": [
+                "enterprise",
+                "global",
+                "free",
+                "resource"
+            ],
+            "website_url": "https://thegreengrid.org",
+            "featured": false,
+            "date_added": "2026-02-18",
+            "status": "published"
+        },
+        {
+            "name": "Data Center World",
+            "slug": "data-center-world",
+            "logo_url": "",
+            "description_short": "Premier conference for data center professionals.",
+            "description_long": "Data Center World is the leading conference and expo for data center, facilities, and IT infrastructure professionals. Features education sessions, workshops, and an extensive exhibit floor.",
+            "category": "policy-industry",
+            "subcategory": "associations-events",
+            "tags": [
+                "enterprise",
+                "us-east",
+                "paid",
+                "resource"
+            ],
+            "website_url": "https://datacenterworld.com",
+            "featured": false,
+            "date_added": "2026-02-18",
+            "status": "published"
+        },
+        {
+            "name": "NVIDIA",
+            "slug": "nvidia",
+            "logo_url": "",
+            "description_short": "GPU computing platform powering AI and data center workloads.",
+            "description_long": "NVIDIA designs GPUs and systems-on-chip for AI training and inference, gaming, and professional visualization. Their CUDA ecosystem and data center GPUs are the backbone of modern AI.",
+            "category": "ai-tools",
+            "subcategory": "ai-infrastructure-software",
+            "tags": [
+                "enterprise",
+                "global",
+                "enterprise",
+                "tool"
+            ],
+            "website_url": "https://nvidia.com",
+            "featured": true,
+            "date_added": "2026-02-18",
+            "status": "published"
+        }
+    ]
+}
