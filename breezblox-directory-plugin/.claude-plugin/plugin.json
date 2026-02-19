@@ -1,0 +1,10 @@
+{
+  "name": "breezblox-directory",
+  "version": "1.0.0",
+  "description": "Automated content and listing workflows for the BreezBlox AI + Data Center Directory",
+  "author": {
+    "name": "BreezBlox"
+  },
+  "category": "Productivity",
+  "keywords": ["directory", "ai", "datacenter", "news", "listings", "automation"]
+}
