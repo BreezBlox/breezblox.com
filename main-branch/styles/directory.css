@@ -40,6 +40,41 @@
     box-shadow: 0 0 10px rgba(255, 216, 0, 0.3);
 }
 
+/* ---- Directory Section Nav ---- */
+.directory-hub-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0 34px;
+}
+
+.directory-hub-link {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    text-decoration: none;
+    color: var(--text-color);
+    border: 1px solid rgba(255, 216, 0, 0.2);
+    background: rgba(26, 38, 57, 0.35);
+    padding: 9px 14px;
+    transition: all 0.3s ease;
+}
+
+.directory-hub-link:hover {
+    border-color: var(--terminal-green);
+    color: var(--terminal-green);
+    box-shadow: 0 0 12px rgba(13, 242, 201, 0.12);
+}
+
+.directory-hub-link.active {
+    border-color: var(--neon-yellow);
+    color: var(--neon-yellow);
+    box-shadow: 0 0 12px rgba(255, 216, 0, 0.15);
+}
+
 /* ---- Category Navigation Grid ---- */
 .category-nav {
     display: grid;
@@ -624,6 +659,26 @@
     line-height: 1.6;
 }
 
+.feed-item .feed-link {
+    display: inline-block;
+    margin-top: 14px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--neon-yellow);
+    text-decoration: none;
+    border: 1px solid rgba(255, 216, 0, 0.25);
+    padding: 7px 12px;
+    transition: all 0.3s ease;
+}
+
+.feed-item .feed-link:hover {
+    color: var(--dark-blue);
+    background: var(--neon-yellow);
+}
+
 .feed-item .feed-tag {
     display: inline-block;
     font-family: 'Share Tech Mono', monospace;
@@ -777,6 +832,17 @@
         gap: 10px;
     }
 
+    .directory-hub-nav {
+        margin: 0 0 24px;
+        gap: 8px;
+    }
+
+    .directory-hub-link {
+        font-size: 0.68rem;
+        letter-spacing: 1.1px;
+        padding: 8px 12px;
+    }
+
     .search-bar input,
     .filter-dropdown {
         font-size: 0.85rem;
@@ -845,6 +911,10 @@
 
     .stats-bar {
         gap: 25px;
+    }
+
+    .directory-hub-nav {
+        justify-content: flex-start;
     }
 
     .featured-section .section-label::before,

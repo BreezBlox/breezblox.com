@@ -10,7 +10,38 @@
   [headers.values]
     X-Frame-Options = "DENY"
 
-# Fallback redirect (only for non-existent paths)
+# Legacy URL redirects
+[[redirects]]
+  from = "/directory/news.html"
+  to = "/directory/news/"
+  status = 301
+
+[[redirects]]
+  from = "/directory/articles.html"
+  to = "/directory/articles/"
+  status = 301
+
+[[redirects]]
+  from = "/directory/tools.html"
+  to = "/directory/tools/"
+  status = 301
+
+[[redirects]]
+  from = "/news-digest-2026-02-19.html"
+  to = "/directory/news/2026-02-19/"
+  status = 301
+
+[[redirects]]
+  from = "/directory/news-digest-2026-02-19.html"
+  to = "/directory/news/2026-02-19/"
+  status = 301
+
+[[redirects]]
+  from = "/directory/news/2026-02-19.html"
+  to = "/directory/news/2026-02-19/"
+  status = 301
+
+# Fallback redirect for non-existent paths
 [[redirects]]
   from = "/*"
   to = "/index.html"
