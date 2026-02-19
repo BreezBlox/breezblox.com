@@ -32,7 +32,6 @@
     </nav>
 
     <div class="dir-container">
-        <!-- HERO -->
         <section class="dir-hero">
             <div class="corner-decoration corner-tl"></div>
             <div class="corner-decoration corner-tr"></div>
@@ -44,7 +43,6 @@
             </div>
         </section>
 
-        <!-- STATS -->
         <div class="dir-stats">
             <div class="dir-stat">
                 <div class="dir-stat-num" id="statListings">--</div>
@@ -60,7 +58,6 @@
             </div>
         </div>
 
-        <!-- CATEGORIES -->
         <section class="dir-section">
             <div class="dir-section-header">
                 <span class="dir-tag">BROWSE</span>
@@ -69,7 +66,6 @@
             <div class="dir-categories" id="categoriesGrid"></div>
         </section>
 
-        <!-- FEATURED LISTINGS -->
         <section class="dir-section" style="background: rgba(26, 38, 57, 0.2); margin: 0 -20px; padding: 60px 20px;">
             <div class="dir-section-header">
                 <span class="dir-tag">FEATURED</span>
@@ -78,7 +74,33 @@
             <div class="dir-listings" id="featuredGrid"></div>
         </section>
 
-        <!-- CTA -->
+        <section class="dir-section">
+            <div class="dir-section-header">
+                <span class="dir-tag dir-tag--red">MOCKUP</span>
+                <h2 class="dir-section-title">MARKET SNAPSHOT</h2>
+            </div>
+            <div class="dir-mock-grid">
+                <article class="dir-mock-card">
+                    <div class="dir-mock-label">ENTERPRISE AI</div>
+                    <h3>MULTI-REGION INFERENCE CLUSTERS</h3>
+                    <p>Placeholder brief for model hosting, reliability zones, and enterprise-grade compliance controls.</p>
+                    <div class="dir-mock-meta">REFERENCE BRIEF // Q1</div>
+                </article>
+                <article class="dir-mock-card">
+                    <div class="dir-mock-label">DATA CENTER</div>
+                    <h3>HIGH-DENSITY GPU RETROFITS</h3>
+                    <p>Mock project summary for power delivery upgrades, thermal redesign, and staged deployment plans.</p>
+                    <div class="dir-mock-meta">CAPACITY PLAYBOOK // DRAFT</div>
+                </article>
+                <article class="dir-mock-card">
+                    <div class="dir-mock-label">CLOUD + POLICY</div>
+                    <h3>COST + GOVERNANCE BENCHMARK</h3>
+                    <p>Sample note for procurement and policy teams comparing region economics and safety requirements.</p>
+                    <div class="dir-mock-meta">EXEC SUMMARY // INTERNAL</div>
+                </article>
+            </div>
+        </section>
+
         <section class="dir-cta">
             <h2>LIST YOUR COMPANY</h2>
             <p>Are you building AI tools or data center infrastructure? Get discovered by the people who need what you offer.</p>
@@ -97,17 +119,8 @@
     <div class="tech-element tech-4">DIRECTORY:ONLINE</div>
 
     <script>
-    // ── Data Layer ──
     let listings = [];
     let categories = [];
-    let parentGroups = [];
-
-    const PARENT_COLORS = {
-        ai: '#9D4EDD',
-        datacenter: '#0DF2C9',
-        cloud: '#FFD800',
-        policy: '#FF2E63'
-    };
 
     const LOGO_GRADIENTS = [
         'linear-gradient(135deg, #7C3AED, #9D4EDD)',
@@ -117,7 +130,38 @@
         'linear-gradient(135deg, #1D4ED8, #3B82F6)',
         'linear-gradient(135deg, #0891B2, #22D3EE)',
         'linear-gradient(135deg, #7C3AED, #A78BFA)',
-        'linear-gradient(135deg, #059669, #34D399)',
+        'linear-gradient(135deg, #059669, #34D399)'
+    ];
+
+    const MOCK_CATEGORIES = [
+        { id: 'ai-models', name: 'AI Model Providers', icon: 'AI', description: 'Foundation models, APIs, enterprise deployment options', parent: 'ai', count: 12 },
+        { id: 'cooling', name: 'Cooling & Thermal', icon: 'TH', description: 'Liquid cooling, immersion systems, retrofit specialists', parent: 'datacenter', count: 9 },
+        { id: 'gpu-cloud', name: 'GPU Cloud Providers', icon: 'GC', description: 'On-demand and reserved GPU infrastructure providers', parent: 'cloud', count: 8 },
+        { id: 'ai-policy', name: 'AI Policy & Governance', icon: 'PG', description: 'Regulatory, safety, and governance advisory teams', parent: 'policy', count: 5 }
+    ];
+
+    const MOCK_FEATURED = [
+        {
+            id: 'mock-nimbus-compute',
+            name: 'Nimbus Compute',
+            description: 'Reference listing placeholder for enterprise GPU clusters and managed model hosting.',
+            category: 'gpu-cloud',
+            tags: ['placeholder']
+        },
+        {
+            id: 'mock-coolgrid',
+            name: 'CoolGrid Systems',
+            description: 'Mock vendor profile for thermal optimization and liquid-cooled rack design.',
+            category: 'cooling',
+            tags: ['example']
+        },
+        {
+            id: 'mock-policyworks',
+            name: 'PolicyWorks AI',
+            description: 'Sample governance consultancy profile for compliance readiness and policy mapping.',
+            category: 'ai-policy',
+            tags: ['draft']
+        }
     ];
 
     function getGradient(name) {
@@ -138,13 +182,52 @@
     }
 
     function getCategoryName(id) {
-        const cat = categories.find(c => c.id === id);
+        const cat = categories.find(c => c.id === id) || MOCK_CATEGORIES.find(c => c.id === id);
         return cat ? cat.name : id;
     }
 
-    // ── Render Functions ──
+    function renderMockStats() {
+        document.getElementById('statListings').textContent = '48';
+        document.getElementById('statCategories').textContent = '14';
+        document.getElementById('statFeatured').textContent = '12';
+    }
+
+    function renderMockCategories() {
+        const grid = document.getElementById('categoriesGrid');
+        grid.innerHTML = MOCK_CATEGORIES.map(cat => `
+            <a href="browse.html?category=${cat.id}" class="dir-cat-card" data-parent="${cat.parent}">
+                <div class="dir-cat-icon">${cat.icon}</div>
+                <div class="dir-cat-name">${cat.name}</div>
+                <div class="dir-cat-desc">${cat.description}</div>
+                <div class="dir-cat-count">${cat.count} LISTINGS</div>
+            </a>
+        `).join('');
+    }
+
+    function renderMockFeatured() {
+        const grid = document.getElementById('featuredGrid');
+        grid.innerHTML = MOCK_FEATURED.map(l => `
+            <a href="listing.html?id=${l.id}" class="dir-listing">
+                <div class="dir-listing-logo" style="background: ${getGradient(l.name)}">${getInitials(l.name)}</div>
+                <div class="dir-listing-info">
+                    <div class="dir-listing-name">${l.name}</div>
+                    <div class="dir-listing-desc">${l.description}</div>
+                    <div class="dir-listing-tags">
+                        <span class="dir-tag-pill ${getTagClass(l.category)}">${getCategoryName(l.category)}</span>
+                        <span class="dir-tag-pill dir-tag-pill--default">${l.tags[0]}</span>
+                    </div>
+                </div>
+            </a>
+        `).join('');
+    }
+
     function renderCategories() {
         const grid = document.getElementById('categoriesGrid');
+        if (!categories.length) {
+            renderMockCategories();
+            return;
+        }
+
         grid.innerHTML = categories.map(cat => {
             const count = listings.filter(l => l.category === cat.id && l.status === 'published').length;
             return `
@@ -161,6 +244,11 @@
     function renderFeatured() {
         const grid = document.getElementById('featuredGrid');
         const featured = listings.filter(l => l.featured && l.status === 'published');
+        if (!featured.length) {
+            renderMockFeatured();
+            return;
+        }
+
         grid.innerHTML = featured.map(l => `
             <a href="listing.html?id=${l.id}" class="dir-listing">
                 <div class="dir-listing-logo" style="background: ${getGradient(l.name)}">${getInitials(l.name)}</div>
@@ -192,8 +280,11 @@
         if (e.key === 'Enter') doSearch();
     });
 
-    // ── Load Data ──
     async function init() {
+        renderMockStats();
+        renderMockCategories();
+        renderMockFeatured();
+
         try {
             const [listingsRes, categoriesRes] = await Promise.all([
                 fetch('../../data/listings.json'),
@@ -201,14 +292,16 @@
             ]);
             listings = await listingsRes.json();
             const catData = await categoriesRes.json();
-            categories = catData.categories;
-            parentGroups = catData.parentGroups;
+            categories = catData.categories || [];
 
             renderStats();
             renderCategories();
             renderFeatured();
         } catch (err) {
             console.error('Failed to load directory data:', err);
+            renderMockStats();
+            renderMockCategories();
+            renderMockFeatured();
         }
     }
 
