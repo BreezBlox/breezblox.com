@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BROWSE DIRECTORY — BREEZBLOX.com</title>
+    <meta name="description"
+        content="Browse and search AI tools, data center infrastructure vendors, cloud providers, and industry resources.">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; script-src 'self' 'unsafe-inline';">
+    <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/directory.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap">
+</head>
+
+<body data-page="browse">
+    <div class="noise"></div>
+    <div class="glitch-line"></div>
+    <div class="glitch-line"></div>
+    <div class="glitch-line"></div>
+    <div class="distortion"></div>
+    <div class="technical-overlay"></div>
+
+    <header>
+        <div class="logo">BREEZBLOX.com</div>
+        <div class="tag-line">DESIGN . CREATE . IMPROVE</div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="../index.html">HOME</a></li>
+            <li><a href="../pages/studio.html">STUDIO</a></li>
+            <li><a href="index.html" class="active">DIRECTORY</a></li>
+            <li><a href="../pages/about.html">ABOUT ME</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <section class="directory-hero" style="padding-bottom: 20px;">
+            <div class="terminal-prompt">querying database...</div>
+            <h1>BROWSE <span style="color: var(--terminal-green);">DIRECTORY</span></h1>
+            <div class="hero-divider"></div>
+        </section>
+
+        <!-- Search & Filters -->
+        <div class="search-controls">
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search listings...">
+            </div>
+            <select class="filter-dropdown" id="filter-category">
+                <option value="">ALL CATEGORIES</option>
+                <!-- Populated by directory.js -->
+            </select>
+            <select class="filter-dropdown" id="filter-subcategory">
+                <option value="">ALL SUBCATEGORIES</option>
+            </select>
+            <div class="results-count" id="results-count"></div>
+        </div>
+
+        <!-- Listings Grid -->
+        <div class="listings-grid" id="listings-grid">
+            <!-- Populated by directory.js -->
+        </div>
+    </div>
+
+    <footer>
+        <div class="logo">BREEZBLOX.com</div>
+        <div class="copyright">2025 | a year from now you'll wish you had started today</div>
+    </footer>
+
+    <div class="tech-element tech-1">SYS:BROWSE:ACTIVE</div>
+    <div class="tech-element tech-2">QUERY:PROCESSING</div>
+    <div class="tech-element tech-3">INDEX//SCAN:LIVE</div>
+    <div class="tech-element tech-4">FILTER:ENABLED</div>
+
+    <div class="stats-counter">
+        SEQUENCE: <span class="counter"></span>
+    </div>
+
+    <script src="../scripts/directory.js"></script>
+</body>
+
+</html>

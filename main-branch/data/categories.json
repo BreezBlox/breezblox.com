@@ -1,108 +1,59 @@
 {
   "categories": [
     {
-      "id": "ai-models",
-      "name": "AI Model Providers",
-      "icon": "\ud83e\udde0",
-      "description": "Foundation models, open-source hubs, fine-tuning platforms",
-      "parent": "ai"
+      "id": "ai-tools",
+      "name": "AI Development & Tools",
+      "icon": "🤖",
+      "description": "Tools, platforms, and frameworks powering modern AI development",
+      "subcategories": [
+        { "id": "ai-model-providers", "name": "AI Model Providers" },
+        { "id": "ai-developer-tools", "name": "AI Developer Tools" },
+        { "id": "ai-infrastructure-software", "name": "AI Infrastructure Software" },
+        { "id": "ai-application-platforms", "name": "AI Application Platforms" },
+        { "id": "ai-research-education", "name": "AI Research & Education" }
+      ]
     },
     {
-      "id": "ai-dev-tools",
-      "name": "AI Developer Tools",
-      "icon": "\ud83d\udee0\ufe0f",
-      "description": "IDEs, coding assistants, eval frameworks, prompt engineering",
-      "parent": "ai"
+      "id": "dc-infrastructure",
+      "name": "Data Center & Physical Infrastructure",
+      "icon": "🏗️",
+      "description": "Hardware, systems, and services for building and operating data centers",
+      "subcategories": [
+        { "id": "containment-solutions", "name": "Containment Solutions" },
+        { "id": "cooling-thermal", "name": "Cooling & Thermal Management" },
+        { "id": "power-electrical", "name": "Power & Electrical" },
+        { "id": "cabling-connectivity", "name": "Structured Cabling & Connectivity" },
+        { "id": "construction-facility", "name": "Construction & Facility Services" },
+        { "id": "monitoring-dcim", "name": "Monitoring & DCIM" }
+      ]
     },
     {
-      "id": "ai-infra-software",
-      "name": "AI Infrastructure Software",
-      "icon": "\u2699\ufe0f",
-      "description": "Orchestration, serving, monitoring, MLOps, vector databases",
-      "parent": "ai"
+      "id": "cloud-compute",
+      "name": "Cloud & Compute Services",
+      "icon": "☁️",
+      "description": "GPU cloud, colocation, and hyperscale compute platforms",
+      "subcategories": [
+        { "id": "gpu-cloud", "name": "GPU Cloud Providers" },
+        { "id": "colocation", "name": "Colocation Providers" },
+        { "id": "hyperscale-wholesale", "name": "Hyperscale & Wholesale" }
+      ]
     },
     {
-      "id": "ai-platforms",
-      "name": "AI Application Platforms",
-      "icon": "\ud83e\udd16",
-      "description": "No-code/low-code AI builders, chatbot platforms, agent frameworks",
-      "parent": "ai"
-    },
-    {
-      "id": "containment",
-      "name": "Containment Solutions",
-      "icon": "\u2744\ufe0f",
-      "description": "Hot/cold aisle containment, custom enclosures, modular systems",
-      "parent": "datacenter"
-    },
-    {
-      "id": "cooling",
-      "name": "Cooling & Thermal",
-      "icon": "\ud83d\udca7",
-      "description": "Liquid cooling, immersion, CRAC/CRAH, heat exchangers",
-      "parent": "datacenter"
-    },
-    {
-      "id": "power",
-      "name": "Power & Electrical",
-      "icon": "\u26a1",
-      "description": "UPS, PDUs, generators, busway, energy storage",
-      "parent": "datacenter"
-    },
-    {
-      "id": "cabling",
-      "name": "Structured Cabling",
-      "icon": "\ud83d\udd0c",
-      "description": "Fiber, copper, cable management, cross-connects",
-      "parent": "datacenter"
-    },
-    {
-      "id": "construction",
-      "name": "Construction & Facility",
-      "icon": "\ud83c\udfd7\ufe0f",
-      "description": "General contractors, design-build, commissioning agents",
-      "parent": "datacenter"
-    },
-    {
-      "id": "dcim",
-      "name": "Monitoring & DCIM",
-      "icon": "\ud83d\udcca",
-      "description": "Environmental monitoring, DCIM platforms, BMS integration",
-      "parent": "datacenter"
-    },
-    {
-      "id": "gpu-cloud",
-      "name": "GPU Cloud Providers",
-      "icon": "\u2601\ufe0f",
-      "description": "On-demand GPU, reserved capacity, spot pricing",
-      "parent": "cloud"
-    },
-    {
-      "id": "colocation",
-      "name": "Colocation Providers",
-      "icon": "\ud83c\udfdb\ufe0f",
-      "description": "Retail colo, wholesale, edge, AI-ready facilities",
-      "parent": "cloud"
-    },
-    {
-      "id": "ai-policy",
-      "name": "AI Policy & Governance",
-      "icon": "\ud83d\udcdc",
-      "description": "Regulation, executive orders, safety frameworks",
-      "parent": "policy"
-    },
-    {
-      "id": "energy",
-      "name": "Energy & Sustainability",
-      "icon": "\ud83c\udf3f",
-      "description": "Renewable energy for DC, carbon reporting, PUE optimization",
-      "parent": "policy"
+      "id": "policy-industry",
+      "name": "Policy, Regulation & Industry",
+      "icon": "📋",
+      "description": "Governance, sustainability, and industry associations shaping the future",
+      "subcategories": [
+        { "id": "ai-policy-governance", "name": "AI Policy & Governance" },
+        { "id": "energy-sustainability", "name": "Energy & Sustainability" },
+        { "id": "associations-events", "name": "Industry Associations & Events" }
+      ]
     }
   ],
-  "parentGroups": [
-    { "id": "ai", "name": "AI Development & Tools", "color": "#9D4EDD" },
-    { "id": "datacenter", "name": "Data Center & Infrastructure", "color": "#0DF2C9" },
-    { "id": "cloud", "name": "Cloud & Compute", "color": "#FFD800" },
-    { "id": "policy", "name": "Policy & Regulation", "color": "#FF2E63" }
-  ]
+  "tags": {
+    "companySize": ["startup", "mid-market", "enterprise"],
+    "geography": ["us-west", "us-east", "us-central", "europe", "asia", "global"],
+    "pricingModel": ["free", "freemium", "paid", "enterprise"],
+    "contentType": ["tool", "service", "resource", "news-source"]
+  }
 }
