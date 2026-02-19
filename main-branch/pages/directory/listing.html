@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BREEZBLOX // Listing Detail</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; script-src 'self' 'unsafe-inline';">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/directory.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap">
+</head>
+<body>
+    <div class="noise"></div>
+    <div class="glitch-line"></div>
+    <div class="glitch-line"></div>
+    <div class="glitch-line"></div>
+    <div class="distortion"></div>
+    <div class="technical-overlay"></div>
+
+    <header>
+        <div class="logo">BREEZBLOX.com</div>
+        <div class="tag-line">DESIGN . CREATE . IMPROVE</div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="../../index.html">HOME</a></li>
+            <li><a href="../studio.html">STUDIO</a></li>
+            <li><a href="index.html" class="active">DIRECTORY</a></li>
+            <li><a href="../about.html">ABOUT ME</a></li>
+        </ul>
+    </nav>
+
+    <div class="dir-container">
+        <div class="dir-detail" id="detailContent">
+            <a href="browse.html" class="dir-back">BACK TO DIRECTORY</a>
+            <div id="detailInner">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+
+        <!-- Related Listings -->
+        <section class="dir-section" id="relatedSection" style="display: none;">
+            <div class="dir-section-header">
+                <span class="dir-tag">RELATED</span>
+                <h2 class="dir-section-title">SIMILAR LISTINGS</h2>
+            </div>
+            <div class="dir-listings" id="relatedGrid"></div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="logo">BREEZBLOX.com</div>
+        <div class="copyright">&copy; 2026 | AI + DATA CENTER DIRECTORY</div>
+    </footer>
+
+    <div class="tech-element tech-1">DIR:ACTIVE:DETAIL</div>
+    <div class="tech-element tech-2">LISTING:LOADED</div>
+    <div class="tech-element tech-3">DATA//RESOLVED</div>
+    <div class="tech-element tech-4">RENDER:COMPLETE</div>
+
+    <script>
+    let listings = [];
+    let categories = [];
+
+    const LOGO_GRADIENTS = [
+        'linear-gradient(135deg, #7C3AED, #9D4EDD)',
+        'linear-gradient(135deg, #059669, #0DF2C9)',
+        'linear-gradient(135deg, #D97706, #FFD800)',
+        'linear-gradient(135deg, #DC2626, #FF2E63)',
+        'linear-gradient(135deg, #1D4ED8, #3B82F6)',
+        'linear-gradient(135deg, #0891B2, #22D3EE)',
+        'linear-gradient(135deg, #7C3AED, #A78BFA)',
+        'linear-gradient(135deg, #059669, #34D399)',
+    ];
+
+    function getGradient(name) {
+        let hash = 0;
+        for (let i = 0; i < name.length; i++) hash = name.charCodeAt(i) + ((hash << 5) - hash);
+        return LOGO_GRADIENTS[Math.abs(hash) % LOGO_GRADIENTS.length];
+    }
+
+    function getInitials(name) {
+        return name.split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase();
+    }
+
+    function getTagClass(category) {
+        const cat = categories.find(c => c.id === category);
+        if (!cat) return 'dir-tag-pill--default';
+        const map = { ai: 'dir-tag-pill--ai', datacenter: 'dir-tag-pill--dc', cloud: 'dir-tag-pill--cloud', policy: 'dir-tag-pill--policy' };
+        return map[cat.parent] || 'dir-tag-pill--default';
+    }
+
+    function getCategoryName(id) {
+        const cat = categories.find(c => c.id === id);
+        return cat ? cat.name : id;
+    }
+
+    function getParentName(categoryId) {
+        const cat = categories.find(c => c.id === categoryId);
+        if (!cat) return '';
+        const groups = { ai: 'AI Development & Tools', datacenter: 'Data Center & Infrastructure', cloud: 'Cloud & Compute', policy: 'Policy & Regulation' };
+        return groups[cat.parent] || '';
+    }
+
+    function renderDetail(listing) {
+        document.title = `BREEZBLOX // ${listing.name}`;
+        const inner = document.getElementById('detailInner');
+        inner.innerHTML = `
+            <div class="dir-detail-header">
+                <div class="dir-detail-logo" style="background: ${getGradient(listing.name)}">${getInitials(listing.name)}</div>
+                <div>
+                    <div class="dir-detail-title">${listing.name}</div>
+                    <div class="dir-detail-cat">${getParentName(listing.category)} // ${getCategoryName(listing.category)}</div>
+                    <div class="dir-listing-tags">
+                        <span class="dir-tag-pill ${getTagClass(listing.category)}">${getCategoryName(listing.category)}</span>
+                        ${listing.tags.map(t => `<span class="dir-tag-pill dir-tag-pill--default">${t}</span>`).join('')}
+                    </div>
+                </div>
+            </div>
+
+            <div class="dir-detail-body">
+                <p>${listing.longDescription || listing.description}</p>
+            </div>
+
+            <div class="dir-detail-meta">
+                <div class="dir-detail-meta-item">
+                    <span class="dir-detail-meta-label">WEBSITE</span>
+                    <span class="dir-detail-meta-value"><a href="${listing.website}" target="_blank" rel="noopener">${listing.website.replace('https://', '')}</a></span>
+                </div>
+                <div class="dir-detail-meta-item">
+                    <span class="dir-detail-meta-label">CATEGORY</span>
+                    <span class="dir-detail-meta-value">${getCategoryName(listing.category)}</span>
+                </div>
+                <div class="dir-detail-meta-item">
+                    <span class="dir-detail-meta-label">ADDED</span>
+                    <span class="dir-detail-meta-value">${listing.dateAdded}</span>
+                </div>
+                <div class="dir-detail-meta-item">
+                    <span class="dir-detail-meta-label">STATUS</span>
+                    <span class="dir-detail-meta-value">${listing.featured ? '★ FEATURED' : 'LISTED'}</span>
+                </div>
+            </div>
+        `;
+    }
+
+    function renderRelated(listing) {
+        const related = listings
+            .filter(l => l.category === listing.category && l.id !== listing.id && l.status === 'published')
+            .slice(0, 3);
+
+        if (related.length === 0) return;
+
+        document.getElementById('relatedSection').style.display = 'block';
+        document.getElementById('relatedGrid').innerHTML = related.map(l => `
+            <a href="listing.html?id=${l.id}" class="dir-listing">
+                <div class="dir-listing-logo" style="background: ${getGradient(l.name)}">${getInitials(l.name)}</div>
+                <div class="dir-listing-info">
+                    <div class="dir-listing-name">${l.name}</div>
+                    <div class="dir-listing-desc">${l.description}</div>
+                    <div class="dir-listing-tags">
+                        <span class="dir-tag-pill ${getTagClass(l.category)}">${getCategoryName(l.category)}</span>
+                    </div>
+                </div>
+            </a>
+        `).join('');
+    }
+
+    async function init() {
+        try {
+            const [listingsRes, categoriesRes] = await Promise.all([
+                fetch('../../data/listings.json'),
+                fetch('../../data/categories.json')
+            ]);
+            listings = await listingsRes.json();
+            const catData = await categoriesRes.json();
+            categories = catData.categories;
+
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get('id');
+
+            if (!id) {
+                window.location.href = 'browse.html';
+                return;
+            }
+
+            const listing = listings.find(l => l.id === id);
+            if (!listing) {
+                document.getElementById('detailInner').innerHTML = `
+                    <div class="dir-empty">
+                        <div class="dir-empty-icon">&#x26A0;</div>
+                        <div class="dir-empty-text">LISTING NOT FOUND</div>
+                    </div>
+                `;
+                return;
+            }
+
+            renderDetail(listing);
+            renderRelated(listing);
+        } catch (err) {
+            console.error('Failed to load listing data:', err);
+        }
+    }
+
+    init();
+    </script>
+</body>
+</html>

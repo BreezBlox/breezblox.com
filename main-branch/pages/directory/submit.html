@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BREEZBLOX // Submit Listing</title>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; script-src 'self' 'unsafe-inline';">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/directory.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap">
+</head>
+<body>
+    <div class="noise"></div>
+    <div class="glitch-line"></div>
+    <div class="glitch-line"></div>
+    <div class="glitch-line"></div>
+    <div class="distortion"></div>
+    <div class="technical-overlay"></div>
+
+    <header>
+        <div class="logo">BREEZBLOX.com</div>
+        <div class="tag-line">DESIGN . CREATE . IMPROVE</div>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="../../index.html">HOME</a></li>
+            <li><a href="../studio.html">STUDIO</a></li>
+            <li><a href="index.html" class="active">DIRECTORY</a></li>
+            <li><a href="../about.html">ABOUT ME</a></li>
+        </ul>
+    </nav>
+
+    <div class="dir-container">
+        <section class="dir-section" style="padding-bottom: 24px;">
+            <div class="dir-section-header">
+                <span class="dir-tag dir-tag--red">SUBMIT</span>
+                <h1 class="dir-section-title">ADD A DIRECTORY LISTING</h1>
+            </div>
+            <p class="dir-submit-intro">
+                Share your company, product, or infrastructure service for review.
+                Listings are reviewed before publication.
+            </p>
+        </section>
+
+        <section class="dir-detail dir-submit-shell">
+            <a href="index.html" class="dir-back">BACK TO DIRECTORY</a>
+
+            <form id="submitForm" class="dir-submit-form" novalidate>
+                <div class="dir-submit-grid">
+                    <div class="dir-submit-field">
+                        <label for="companyName">COMPANY NAME</label>
+                        <input id="companyName" name="companyName" type="text" placeholder="Example: Nimbus Compute" required>
+                    </div>
+
+                    <div class="dir-submit-field">
+                        <label for="website">WEBSITE</label>
+                        <input id="website" name="website" type="url" placeholder="https://example.com" required>
+                    </div>
+
+                    <div class="dir-submit-field dir-submit-field--full">
+                        <label for="category">CATEGORY</label>
+                        <select id="category" name="category" required>
+                            <option value="">Select a category</option>
+                        </select>
+                    </div>
+
+                    <div class="dir-submit-field dir-submit-field--full">
+                        <label for="shortDescription">SHORT DESCRIPTION</label>
+                        <textarea id="shortDescription" name="shortDescription" rows="3" maxlength="220" placeholder="One concise sentence for listing cards." required></textarea>
+                    </div>
+
+                    <div class="dir-submit-field dir-submit-field--full">
+                        <label for="longDescription">LONG DESCRIPTION</label>
+                        <textarea id="longDescription" name="longDescription" rows="5" placeholder="Optional details shown on the listing detail page."></textarea>
+                    </div>
+
+                    <div class="dir-submit-field">
+                        <label for="tags">TAGS</label>
+                        <input id="tags" name="tags" type="text" placeholder="gpu-cloud, startup, enterprise">
+                    </div>
+
+                    <div class="dir-submit-field">
+                        <label for="contactEmail">CONTACT EMAIL</label>
+                        <input id="contactEmail" name="contactEmail" type="email" placeholder="you@company.com" required>
+                    </div>
+                </div>
+
+                <div class="dir-submit-actions">
+                    <p class="dir-submit-note">Submissions are captured locally for now and do not send to a backend yet.</p>
+                    <button class="dir-submit-btn" type="submit">SUBMIT FOR REVIEW</button>
+                </div>
+            </form>
+
+            <div class="dir-empty" id="submitSuccess" style="display: none;">
+                <div class="dir-empty-icon">OK</div>
+                <div class="dir-empty-text dir-submit-success-title">SUBMISSION CAPTURED</div>
+                <p class="dir-submit-success-copy" id="submitSuccessCopy"></p>
+                <a class="cta-button" href="browse.html">BROWSE LISTINGS</a>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="logo">BREEZBLOX.com</div>
+        <div class="copyright">&copy; 2026 | AI + DATA CENTER DIRECTORY</div>
+    </footer>
+
+    <div class="tech-element tech-1">DIR:ACTIVE:SUBMIT</div>
+    <div class="tech-element tech-2">FORM:READY</div>
+    <div class="tech-element tech-3">QUEUE//INTAKE:LOCAL</div>
+    <div class="tech-element tech-4">REVIEW:STAGED</div>
+
+    <script>
+    let categories = [];
+
+    function slugify(value) {
+        return value
+            .toLowerCase()
+            .trim()
+            .replace(/[^a-z0-9\s-]/g, '')
+            .replace(/\s+/g, '-')
+            .replace(/-+/g, '-');
+    }
+
+    function renderCategoryOptions() {
+        const select = document.getElementById('category');
+        const options = categories.map((category) => (
+            `<option value="${category.id}">${category.name}</option>`
+        ));
+        select.innerHTML = ['<option value="">Select a category</option>', ...options].join('');
+    }
+
+    async function loadCategories() {
+        try {
+            const response = await fetch('../../data/categories.json');
+            const data = await response.json();
+            categories = data.categories || [];
+            renderCategoryOptions();
+        } catch (error) {
+            console.error('Failed to load categories:', error);
+        }
+    }
+
+    function onSubmit(event) {
+        event.preventDefault();
+        const form = event.currentTarget;
+
+        if (!form.reportValidity()) {
+            return;
+        }
+
+        const formData = new FormData(form);
+        const name = formData.get('companyName').toString().trim();
+        const categoryId = formData.get('category').toString().trim();
+        const category = categories.find((item) => item.id === categoryId);
+
+        const submission = {
+            id: slugify(name),
+            name,
+            description: formData.get('shortDescription').toString().trim(),
+            longDescription: formData.get('longDescription').toString().trim(),
+            category: categoryId,
+            tags: formData.get('tags').toString().split(',').map((item) => item.trim()).filter(Boolean),
+            website: formData.get('website').toString().trim(),
+            contactEmail: formData.get('contactEmail').toString().trim(),
+            status: 'pending',
+            dateSubmitted: new Date().toISOString().slice(0, 10)
+        };
+
+        console.log('Directory submission captured:', submission);
+
+        document.getElementById('submitSuccessCopy').textContent =
+            `${submission.name} was captured in ${category ? category.name : categoryId || 'Uncategorized'} and queued for manual review.`;
+
+        form.style.display = 'none';
+        document.getElementById('submitSuccess').style.display = 'block';
+    }
+
+    document.getElementById('submitForm').addEventListener('submit', onSubmit);
+    loadCategories();
+    </script>
+</body>
+</html>
