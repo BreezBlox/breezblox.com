@@ -702,6 +702,116 @@
 }
 
 /* ---- Responsive ---- */
+@media (max-width: 900px) {
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px 20px;
+        padding: 0 10px;
+    }
+
+    nav a {
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+    }
+
+    .container {
+        width: 94%;
+        padding: 12px;
+    }
+
+    .directory-hero {
+        padding: 40px 0 30px;
+    }
+
+    .directory-hero h1 {
+        letter-spacing: 1.5px;
+        line-height: 1.2;
+    }
+
+    .directory-hero .hero-subtitle {
+        font-size: 0.9rem;
+        letter-spacing: 0.5px;
+        line-height: 1.55;
+    }
+
+    .section-title {
+        font-size: clamp(1.5rem, 6vw, 2.1rem);
+        letter-spacing: 3px;
+        margin-bottom: 40px;
+    }
+
+    .stats-bar {
+        gap: 18px;
+        margin: 24px 0;
+    }
+
+    .stat-item {
+        min-width: 130px;
+    }
+
+    .category-card,
+    .listing-card,
+    .feed-item {
+        padding: 20px 16px;
+    }
+
+    .listing-card .card-header {
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .listing-card .card-title {
+        font-size: 0.78rem;
+        line-height: 1.35;
+        letter-spacing: 0.3px;
+        word-break: break-word;
+    }
+
+    .listing-card .card-desc {
+        font-size: 0.75rem;
+        line-height: 1.45;
+    }
+
+    .search-controls {
+        gap: 10px;
+    }
+
+    .search-bar input,
+    .filter-dropdown {
+        font-size: 0.85rem;
+    }
+
+    .filter-dropdown {
+        min-width: 0;
+    }
+
+    .results-count {
+        font-size: 0.75rem;
+    }
+
+    .listing-detail .detail-header {
+        gap: 16px;
+    }
+
+    .listing-detail .detail-meta {
+        padding: 18px 14px;
+    }
+
+    .listing-detail .meta-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    .submit-btn,
+    .detail-cta,
+    .contact-button {
+        width: 100%;
+        text-align: center;
+    }
+}
+
 @media (max-width: 768px) {
     .category-nav {
         grid-template-columns: 1fr;
@@ -739,6 +849,72 @@
 
     .featured-section .section-label::before,
     .featured-section .section-label::after {
+        display: none;
+    }
+}
+
+@media (max-width: 520px) {
+    .directory-hero {
+        padding: 30px 0 22px;
+    }
+
+    .directory-hero h1 {
+        font-size: 1.7rem;
+    }
+
+    .hero-divider {
+        width: 84px;
+        margin: 16px auto;
+    }
+
+    .stats-bar {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .stat-item {
+        min-width: 0;
+    }
+
+    .category-card .cat-icon {
+        font-size: 1.5rem;
+        margin-bottom: 8px;
+    }
+
+    .listing-card .card-logo {
+        width: 40px;
+        height: 40px;
+        font-size: 0.95rem;
+    }
+
+    .listing-card .card-tag,
+    .detail-tag {
+        font-size: 0.6rem;
+        padding: 3px 6px;
+    }
+
+    .search-bar input {
+        padding-left: 40px;
+    }
+
+    .search-bar::before {
+        left: 12px;
+        font-size: 0.95rem;
+    }
+
+    .listing-detail .detail-logo {
+        width: 64px;
+        height: 64px;
+        font-size: 1.2rem;
+    }
+
+    .listing-detail .detail-body {
+        font-size: 0.86rem;
+        line-height: 1.6;
+    }
+
+    .tech-element,
+    .stats-counter {
         display: none;
     }
 }
