@@ -1,0 +1,208 @@
+{
+  "_meta": {
+    "description": "BreezBlox Directory - Content Source Configuration",
+    "version": "1.0",
+    "last_updated": "2026-02-18",
+    "instructions": "Edit this file to add, remove, or re-prioritize content sources. Cowork agents read this file on every scheduled run."
+  },
+  "sources": [
+    {
+      "id": "testingcatalog-x",
+      "name": "@testingcatalog",
+      "url": "https://x.com/testingcatalog",
+      "type": "social",
+      "category": "ai-news",
+      "frequency": "daily",
+      "priority": "high",
+      "notes": "Rob's pick — AI tool testing and curation",
+      "active": true
+    },
+    {
+      "id": "ai-daily-brief",
+      "name": "AI Daily Brief Podcast",
+      "url": "https://aidailybrief.com",
+      "type": "podcast",
+      "category": "ai-news",
+      "frequency": "daily",
+      "priority": "high",
+      "notes": "Rob's pick — daily AI news briefing",
+      "active": true
+    },
+    {
+      "id": "everyday-ai",
+      "name": "Everyday AI Podcast & Site",
+      "url": "https://www.youreverydayai.com",
+      "type": "podcast-blog",
+      "category": "ai-news",
+      "frequency": "daily",
+      "priority": "high",
+      "notes": "Rob's pick — practical AI for everyday users, free content on site",
+      "active": true
+    },
+    {
+      "id": "ai-show-marketingai",
+      "name": "The Artificial Intelligence Show",
+      "url": "https://www.marketingaiinstitute.com/the-artificial-intelligence-show",
+      "type": "podcast",
+      "category": "ai-news",
+      "frequency": "weekly",
+      "priority": "high",
+      "notes": "Rob's pick — from Marketing AI Institute",
+      "active": true
+    },
+    {
+      "id": "the-verge-ai",
+      "name": "The Verge - AI Section",
+      "url": "https://www.theverge.com/ai-artificial-intelligence",
+      "type": "news-publication",
+      "category": "ai-news",
+      "frequency": "daily",
+      "priority": "medium",
+      "notes": "Mainstream tech coverage of AI developments",
+      "active": true
+    },
+    {
+      "id": "ars-technica-ai",
+      "name": "Ars Technica - AI",
+      "url": "https://arstechnica.com/ai/",
+      "type": "news-publication",
+      "category": "ai-news",
+      "frequency": "daily",
+      "priority": "medium",
+      "notes": "In-depth technical AI coverage",
+      "active": true
+    },
+    {
+      "id": "import-ai",
+      "name": "Import AI Newsletter",
+      "url": "https://importai.substack.com",
+      "type": "newsletter",
+      "category": "ai-news",
+      "frequency": "weekly",
+      "priority": "medium",
+      "notes": "Jack Clark's AI policy + research newsletter",
+      "active": true
+    },
+    {
+      "id": "tldr-ai",
+      "name": "TLDR AI Newsletter",
+      "url": "https://tldr.tech/ai",
+      "type": "newsletter",
+      "category": "ai-news",
+      "frequency": "daily",
+      "priority": "medium",
+      "notes": "Quick-hit AI news digest",
+      "active": true
+    },
+    {
+      "id": "bens-bites",
+      "name": "Ben's Bites",
+      "url": "https://bensbites.com",
+      "type": "newsletter",
+      "category": "ai-news",
+      "frequency": "daily",
+      "priority": "medium",
+      "notes": "AI startup and product news",
+      "active": true
+    },
+    {
+      "id": "datacenter-dynamics",
+      "name": "Data Center Dynamics",
+      "url": "https://www.datacenterdynamics.com",
+      "type": "industry-publication",
+      "category": "datacenter",
+      "frequency": "daily",
+      "priority": "high",
+      "notes": "Leading DC industry publication",
+      "active": true
+    },
+    {
+      "id": "datacenter-knowledge",
+      "name": "Data Center Knowledge",
+      "url": "https://www.datacenterknowledge.com",
+      "type": "industry-publication",
+      "category": "datacenter",
+      "frequency": "daily",
+      "priority": "high",
+      "notes": "Comprehensive DC news and analysis",
+      "active": true
+    },
+    {
+      "id": "uptime-institute",
+      "name": "Uptime Institute",
+      "url": "https://uptimeinstitute.com/resources/research-and-reports",
+      "type": "research",
+      "category": "datacenter",
+      "frequency": "weekly",
+      "priority": "high",
+      "notes": "DC standards, research, and tier certifications",
+      "active": true
+    },
+    {
+      "id": "structure-research",
+      "name": "STR (Structure Research)",
+      "url": "https://www.structureresearch.net",
+      "type": "market-research",
+      "category": "datacenter",
+      "frequency": "monthly",
+      "priority": "medium",
+      "notes": "Market data and forecasts for DC industry",
+      "active": true
+    },
+    {
+      "id": "afcom-dcworld",
+      "name": "AFCOM / Data Center World",
+      "url": "https://www.afcom.com",
+      "type": "association",
+      "category": "datacenter",
+      "frequency": "periodic",
+      "priority": "medium",
+      "notes": "Industry association and conference content",
+      "active": true
+    },
+    {
+      "id": "mission-critical",
+      "name": "Mission Critical Magazine",
+      "url": "https://www.missioncriticalmagazine.com",
+      "type": "trade-publication",
+      "category": "datacenter",
+      "frequency": "monthly",
+      "priority": "medium",
+      "notes": "Facility operations and engineering focus",
+      "active": true
+    },
+    {
+      "id": "ai-policy-cset",
+      "name": "AI Policy Newsletter (CSET Georgetown)",
+      "url": "https://cset.georgetown.edu",
+      "type": "newsletter",
+      "category": "policy",
+      "frequency": "weekly",
+      "priority": "high",
+      "notes": "Academic AI policy analysis",
+      "active": true
+    },
+    {
+      "id": "whitehouse-ai",
+      "name": "The White House - AI/Tech Briefings",
+      "url": "https://www.whitehouse.gov/ostp/ai/",
+      "type": "government",
+      "category": "policy",
+      "frequency": "as-published",
+      "priority": "medium",
+      "notes": "Executive orders, policy directives",
+      "active": true
+    },
+    {
+      "id": "utility-dive",
+      "name": "Utility Dive - Energy/Power",
+      "url": "https://www.utilitydive.com",
+      "type": "industry-news",
+      "category": "policy",
+      "frequency": "daily",
+      "priority": "medium",
+      "notes": "Energy and power grid news impacting DC operations",
+      "active": true
+    }
+  ]
+}
