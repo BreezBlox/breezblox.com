@@ -4,6 +4,44 @@
 [build.environment]
   NODE_VERSION = "16"
 
+# Serve directory pages directly
+[[headers]]
+  for = "/directory/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+
+# Legacy URL redirects
+[[redirects]]
+  from = "/directory/news.html"
+  to = "/directory/news/"
+  status = 301
+
+[[redirects]]
+  from = "/directory/articles.html"
+  to = "/directory/articles/"
+  status = 301
+
+[[redirects]]
+  from = "/directory/tools.html"
+  to = "/directory/tools/"
+  status = 301
+
+[[redirects]]
+  from = "/news-digest-2026-02-19.html"
+  to = "/directory/news/2026-02-19/"
+  status = 301
+
+[[redirects]]
+  from = "/directory/news-digest-2026-02-19.html"
+  to = "/directory/news/2026-02-19/"
+  status = 301
+
+[[redirects]]
+  from = "/directory/news/2026-02-19.html"
+  to = "/directory/news/2026-02-19/"
+  status = 301
+
+# Fallback redirect for non-existent paths
 [[redirects]]
   from = "/*"
   to = "/index.html"
