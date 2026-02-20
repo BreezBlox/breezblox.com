@@ -13,17 +13,17 @@
 # Legacy URL redirects
 [[redirects]]
   from = "/directory/news.html"
-  to = "/directory/news/"
+  to = "/directory/news"
   status = 301
 
 [[redirects]]
   from = "/directory/articles.html"
-  to = "/directory/articles/"
+  to = "/directory/articles"
   status = 301
 
 [[redirects]]
   from = "/directory/tools.html"
-  to = "/directory/tools/"
+  to = "/directory/tools"
   status = 301
 
 [[redirects]]
